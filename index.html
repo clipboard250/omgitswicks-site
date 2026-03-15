@@ -48,7 +48,7 @@ text-transform: uppercase;
 color: #F0EBE3;
 white-space: nowrap;
 }
-.nav-logo .t { color: #0E7C6B; }
+.nav-logo .t { color: #D4860A; }
 
 .nav-links { display: flex; gap: 20px; align-items: center; }
 
@@ -134,12 +134,14 @@ filter: brightness(0.8);
 }
 
 .hero-sub {
-padding: 16px 20px 0;
-border-top: 1px solid #222;
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 14px;
-margin-top: 16px;
+  padding: 20px 20px 24px;
+  border-top: 1px solid #222;
+  border-bottom: 1px solid #222;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 0;
+  background: #111;
 }
 
 .sub-label {
@@ -159,7 +161,7 @@ color: #CCCAC6;
 
 /* ── TICKER ── */
 .ticker {
-background: #0E7C6B;
+background: #D4860A;
 overflow: hidden;
 height: 38px;
 display: flex;
@@ -202,6 +204,10 @@ text-transform: uppercase;
 background: #0E0E0E;
 border-right: 1px solid #1e1e1e;
 transition: background 0.15s, color 0.15s;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 2px;
 }
 .slink:last-child { border-right: none; }
 .slink:hover { background: #141414; color: #F0EBE3; }
@@ -227,7 +233,7 @@ font-size: 0.63rem;
 font-weight: 700;
 letter-spacing: 0.22em;
 text-transform: uppercase;
-color: #0E7C6B;
+color: #D4860A;
 margin-bottom: 18px;
 display: flex;
 align-items: center;
@@ -347,7 +353,7 @@ font-size: 0.65rem;
 font-weight: 700;
 letter-spacing: 0.14em;
 text-transform: uppercase;
-color: #0E7C6B;
+color: #D4860A;
 border-top: 1px solid #1e1e1e;
 }
 
@@ -365,7 +371,7 @@ border: 1px solid #333;
 color: #F0EBE3;
 transition: border-color 0.15s, background 0.15s;
 }
-.merch-all:hover { border-color: #0E7C6B; background: rgba(14,124,107,0.08); }
+.merch-all:hover { border-color: #D4860A; background: rgba(14,124,107,0.08); }
 
 /* ── SHOWS ── */
 .show {
@@ -419,7 +425,7 @@ padding: 3px 8px;
 border: 1px solid currentColor;
 white-space: nowrap;
 }
-.on   { color: #0E7C6B; }
+.on   { color: #D4860A; }
 .sold { color: #444; }
 
 /* ── CONTACT ── */
@@ -594,12 +600,20 @@ transition: border-color 0.15s, color 0.15s;
     <div class="hero-over">Fort Myers, Florida &mdash; Comedian</div>
     <h1 class="hero-name">OMG<span class="red">Its</span>Wicks</h1>
   </div>
-  <img
-    class="hero-photo"
-    src="https://omgitswicks.com/images/900/23073324/image11-p5IaHceuAGTPZI_tBIZ8Mw.jpeg"
-    alt="OMGItsWicks performing"
-    onerror="this.style.display='none'"
-  >
+ <div style="display:flex;gap:2px;margin-top:20px;">
+    <img
+      style="width:50%;height:220px;object-fit:cover;object-position:top center;display:block;filter:brightness(0.8);"
+      src="https://omgitswicks.com/images/900/23073324/image11-p5IaHceuAGTPZI_tBIZ8Mw.jpeg"
+      alt="OMGItsWicks"
+      onerror="this.style.display='none'"
+    >
+    <img
+      style="width:50%;height:220px;object-fit:cover;object-position:top center;display:block;filter:brightness(0.8);"
+      src="https://omgitswicks.com/images/1200/23073321/image21-J2PsYOkyYqk06zr2Ua78mQ.jpeg"
+      alt="OMGItsWicks performing"
+      onerror="this.style.display='none'"
+    >
+ </div>
   <div class="hero-sub">
     <div>
       <div class="sub-label">Known for</div>
@@ -612,20 +626,20 @@ transition: border-color 0.15s, color 0.15s;
   </div>
   <div class="ticker">
     <div class="ticker-track">
-      <span class="ti">OMGItsWicks</span><span class="ts">&nbsp;/&nbsp;</span>
-      <span class="ti">Family-friendly comedy</span><span class="ts">&nbsp;/&nbsp;</span>
-      <span class="ti">Fort Myers, FL</span><span class="ts">&nbsp;/&nbsp;</span>
-      <span class="ti">1.7M on TikTok</span><span class="ts">&nbsp;/&nbsp;</span>
-      <span class="ti">Sold-out shows statewide</span><span class="ts">&nbsp;/&nbsp;</span>
-      <span class="ti">Free meet &amp; greet every night</span><span class="ts">&nbsp;/&nbsp;</span>
-      <span class="ti">Book Wicks</span><span class="ts">&nbsp;/&nbsp;</span>
-      <span class="ti">OMGItsWicks</span><span class="ts">&nbsp;/&nbsp;</span>
-      <span class="ti">Family-friendly comedy</span><span class="ts">&nbsp;/&nbsp;</span>
-      <span class="ti">Fort Myers, FL</span><span class="ts">&nbsp;/&nbsp;</span>
-      <span class="ti">1.7M on TikTok</span><span class="ts">&nbsp;/&nbsp;</span>
-      <span class="ti">Sold-out shows statewide</span><span class="ts">&nbsp;/&nbsp;</span>
-      <span class="ti">Free meet &amp; greet every night</span><span class="ts">&nbsp;/&nbsp;</span>
-      <span class="ti">Book Wicks</span><span class="ts">&nbsp;/&nbsp;</span>
+      <span class="ti">What's going on out here?</span><span class="ts">&nbsp;/&nbsp;</span>
+      <span class="ti">Flip phone activate</span><span class="ts">&nbsp;/&nbsp;</span>
+      <span class="ti">Only in Florida</span><span class="ts">&nbsp;/&nbsp;</span>
+      <span class="ti">What in the Florida?!</span><span class="ts">&nbsp;/&nbsp;</span>
+      <span class="ti">I'm just glad I got it on my flip phone</span><span class="ts">&nbsp;/&nbsp;</span>
+      <span class="ti">High level Floridaing</span><span class="ts">&nbsp;/&nbsp;</span>
+      <span class="ti">CEO Florida</span><span class="ts">&nbsp;/&nbsp;</span>
+      <span class="ti">What's going on out here?</span><span class="ts">&nbsp;/&nbsp;</span>
+      <span class="ti">Flip phone activate</span><span class="ts">&nbsp;/&nbsp;</span>
+      <span class="ti">Only in Florida</span><span class="ts">&nbsp;/&nbsp;</span>
+      <span class="ti">What in the Florida?!</span><span class="ts">&nbsp;/&nbsp;</span>
+      <span class="ti">I'm just glad I got it on my flip phone</span><span class="ts">&nbsp;/&nbsp;</span>
+      <span class="ti">High level Floridaing</span><span class="ts">&nbsp;/&nbsp;</span>
+      <span class="ti">CEO Florida</span><span class="ts">&nbsp;/&nbsp;</span>
     </div>
   </div>
 </div>
@@ -633,10 +647,10 @@ transition: border-color 0.15s, color 0.15s;
 <!-- SOCIAL -->
 
 <div class="social-row">
-  <a href="https://tiktok.com/@omgitswicks" target="_blank" class="slink"><span class="scount">1.7M</span>TikTok</a>
-  <a href="https://instagram.com/omgitswicks" target="_blank" class="slink"><span class="scount">553K</span>Instagram</a>
-  <a href="https://youtube.com/@omgitswicks" target="_blank" class="slink"><span class="scount">YouTube</span>@omgitswicks</a>
-  <a href="https://facebook.com/omgitswicks" target="_blank" class="slink"><span class="scount">685K</span>Facebook</a>
+ <a href="https://www.tiktok.com/@omgitswicks" target="_blank" class="slink"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="margin-bottom:4px;opacity:0.7;"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.2 8.2 0 0 0 4.79 1.52V6.75a4.85 4.85 0 0 1-1.02-.06z"/></svg><span class="scount">1.7M</span>TikTok</a>
+  <a href="https://www.instagram.com/omgitswicks" target="_blank" class="slink"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-bottom:4px;opacity:0.7;"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><span class="scount">553K</span>Instagram</a>
+  <a href="https://www.youtube.com/@omgitswicks" target="_blank" class="slink"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="margin-bottom:4px;opacity:0.7;"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg><span class="scount">YouTube</span>@omgitswicks</a>
+  <a href="https://www.facebook.com/omgitswicks239" target="_blank" class="slink"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="margin-bottom:4px;opacity:0.7;"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.88v2.27h3.32l-.53 3.5h-2.79V24C19.61 23.1 24 18.1 24 12.07z"/></svg><span class="scount">685K</span>Facebook</a>
 </div>
 
 <div class="wrap">
@@ -678,7 +692,7 @@ transition: border-color 0.15s, color 0.15s;
         <div class="merch-cta">Shop &rarr;</div>
       </a>
 
-```
+
   <a href="https://omgitswicks.myspreadshop.com/but+did+the+waffle+house+close-A69b040413c6a9671924d33d3?productType=20&sellable=0kv4L2GYLLs3mvJD3yXd-20-22&appearance=251" target="_blank" class="merch-card">
     <div class="merch-img-wrap">
       <img class="merch-img"
@@ -720,7 +734,7 @@ transition: border-color 0.15s, color 0.15s;
   </a>
 </div>
 <a href="https://omgitswicks.myspreadshop.com/all" target="_blank" class="merch-all">View all merch &rarr;</a>
-```
+
 
   </div>
 
@@ -730,7 +744,7 @@ transition: border-color 0.15s, color 0.15s;
     <div class="sec-label">Upcoming shows</div>
     <h2 class="sec-title">On the road</h2>
 
-```
+
 <a href="https://www.etix.com/ticket/p/88075635/" target="_blank" class="show"><div><div class="show-day">23</div><div class="show-month">Apr</div></div><div><div class="show-venue">McCurdy's Comedy Club</div><div class="show-meta">Sarasota, FL &mdash; 7:00 PM</div></div><span class="badge on">Tickets</span></a>
 <a href="https://www.etix.com/ticket/p/53545233" target="_blank" class="show"><div><div class="show-day">24</div><div class="show-month">Apr</div></div><div><div class="show-venue">McCurdy's Comedy Club</div><div class="show-meta">Sarasota, FL &mdash; 6:30 &amp; 8:50 PM</div></div><span class="badge sold">Sold out</span></a>
 <a href="https://www.etix.com/ticket/p/31167106" target="_blank" class="show"><div><div class="show-day">25</div><div class="show-month">Apr</div></div><div><div class="show-venue">McCurdy's Comedy Club</div><div class="show-meta">Sarasota, FL &mdash; 6:30 &amp; 8:50 PM</div></div><span class="badge sold">Sold out</span></a>
@@ -741,7 +755,7 @@ transition: border-color 0.15s, color 0.15s;
 <a href="https://secure.sellingticket.com/design22/clients/index.aspx?designID=38435&OrganizationID=64" target="_blank" class="show"><div><div class="show-day">29</div><div class="show-month">Aug</div></div><div><div class="show-venue">Polk Theatre</div><div class="show-meta">Lakeland, FL &mdash; 7:00 PM</div></div><span class="badge on">Tickets</span></a>
 <a href="https://visanientertainmentinc.thundertix.com/performances/3235825/section/58540" target="_blank" class="show"><div><div class="show-day">11</div><div class="show-month">Sep</div></div><div><div class="show-venue">Visani Comedy Theatre</div><div class="show-meta">Port Charlotte, FL &mdash; 6:30 &amp; 9:30 PM</div></div><span class="badge on">Tickets</span></a>
 <a href="https://www.offthehookcomedy.com/shows/357429" target="_blank" class="show"><div><div class="show-day">5</div><div class="show-month">Nov</div></div><div><div class="show-venue">Off the Hook Comedy Club</div><div class="show-meta">Naples, FL &mdash; Multiple shows</div></div><span class="badge on">Tickets</span></a>
-```
+
 
   </div>
 
@@ -753,8 +767,8 @@ transition: border-color 0.15s, color 0.15s;
     <p style="font-size:0.95rem;font-weight:300;color:#555;line-height:1.6;">Booking, media, merch, or a question&mdash;tap an option and we'll connect you directly.</p>
     <div class="cgrid">
       <div class="ccard" onclick="openModal()" style="border-top-color:#C0321C;"><div class="ccard-title" style="color:#C0321C;">Book Wicks</div><div class="ccard-desc">Theaters, clubs, corporate, private shows</div></div>
-      <a href="https://omgitswicks.myspreadshop.com/all" target="_blank" class="ccard" style="border-top-color:#0E7C6B;"><div class="ccard-title" style="color:#0E7C6B;">Get merch</div><div class="ccard-desc">Official Spreadshop store</div></a>
-      <div class="ccard" onclick="openModal()" style="border-top-color:#0E7C6B;"><div class="ccard-title">Media inquiry</div><div class="ccard-desc">Press, interviews, features</div></div>
+      <a href="https://omgitswicks.myspreadshop.com/all" target="_blank" class="ccard" style="border-top-color:#D4860A;"><div class="ccard-title" style="color:#D4860A;">Get merch</div><div class="ccard-desc">Official Spreadshop store</div></a>
+      <div class="ccard" onclick="openModal()" style="border-top-color:#D4860A;"><div class="ccard-title">Media inquiry</div><div class="ccard-desc">Press, interviews, features</div></div>
       <div class="ccard" onclick="openModal()" style="border-top-color:#333;"><div class="ccard-title">Ask a question</div><div class="ccard-desc">Just reach out</div></div>
     </div>
   </div>
@@ -762,7 +776,7 @@ transition: border-color 0.15s, color 0.15s;
 </div><!-- end wrap -->
 
 <footer>
-  <div class="foot-name">OMG<span style="color:#0E7C6B;">Its</span>Wicks &mdash; Fort Myers, FL</div>
+  <div class="foot-name">OMG<span style="color:#D4860A;">Its</span>Wicks &mdash; Fort Myers, FL</div>
   <div class="foot-note">All shows family-friendly. Free meet &amp; greet every night.</div>
 </footer>
 
@@ -777,15 +791,15 @@ transition: border-color 0.15s, color 0.15s;
         <div><div class="opt-label">Book a show</div><div class="opt-detail">Text the team directly</div></div>
         <span class="opt-arrow">&rarr;</span>
       </a>
-      <a href="https://omgitswicks.myspreadshop.com/all" target="_blank" class="modal-opt" style="border-left-color:#0E7C6B;">
+      <a href="https://omgitswicks.myspreadshop.com/all" target="_blank" class="modal-opt" style="border-left-color:#D4860A;">
         <div><div class="opt-label">Get merch</div><div class="opt-detail">Official Spreadshop store</div></div>
         <span class="opt-arrow">&rarr;</span>
       </a>
-      <a href="sms:17273539673?body=Hi%2C%20media%20inquiry%20for%20OMGItsWicks." class="modal-opt" style="border-left-color:#0E7C6B;">
+      <a href="sms:17273539673?body=Hi%2C%20media%20inquiry%20for%20OMGItsWicks." class="modal-opt" style="border-left-color:#D4860A;">
         <div><div class="opt-label">Media inquiry</div><div class="opt-detail">Press, interviews, features</div></div>
         <span class="opt-arrow">&rarr;</span>
       </a>
-      <a href="sms:17273539673?body=Hey%20Wicks%20team%2C%20I%20have%20a%20question." class="modal-opt" style="border-left-color:#0E7C6B;">
+      <a href="sms:17273539673?body=Hey%20Wicks%20team%2C%20I%20have%20a%20question." class="modal-opt" style="border-left-color:#D4860A;">
         <div><div class="opt-label">Ask a question</div><div class="opt-detail">Text us directly</div></div>
         <span class="opt-arrow">&rarr;</span>
       </a>
