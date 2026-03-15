@@ -1,234 +1,305 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" style="background:#0E0E0E;">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="light only">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="OMGItsWicks — Fort Myers comedian. Florida observations, family-friendly comedy, sold-out shows statewide. Free meet & greet every night.">
 <title>OMGItsWicks — Florida's Comedian</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { background: #111; }
-body {
-  font-family: 'Barlow Condensed', Arial Narrow, sans-serif;
-  background: #111;
-  -webkit-font-smoothing: antialiased;
-  -webkit-text-size-adjust: 100%;
-  overflow-x: hidden;
+
+html {
+background: #0E0E0E;
+scroll-behavior: smooth;
 }
 
-/* PICKER */
-.picker {
+body {
+font-family: ‘Barlow Condensed’, Arial Narrow, sans-serif;
+background: #0E0E0E;
+color: #F0EBE3;
+-webkit-font-smoothing: antialiased;
+-webkit-text-size-adjust: 100%;
+overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
 position: fixed;
 top: 0; left: 0; right: 0;
-z-index: 200;
-background: #111;
-border-bottom: 2px solid #C0321C;
+z-index: 100;
+background: #0E0E0E;
 display: flex;
 align-items: center;
 justify-content: space-between;
 padding: 0 20px;
 height: 48px;
-gap: 12px;
+border-bottom: 2px solid #C0321C;
 }
-.picker-label {
-font-size: 0.68rem;
+
+.nav-logo {
+font-weight: 900;
+font-size: 1.05rem;
+letter-spacing: 0.06em;
+text-transform: uppercase;
+color: #F0EBE3;
+white-space: nowrap;
+}
+.nav-logo .t { color: #0E7C6B; }
+
+.nav-links { display: flex; gap: 20px; align-items: center; }
+
+.nav-link {
+font-size: 0.72rem;
+font-weight: 700;
+letter-spacing: 0.16em;
+text-transform: uppercase;
+color: #555;
+text-decoration: none;
+}
+
+.nav-book {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 0.72rem;
+font-weight: 700;
+letter-spacing: 0.16em;
+text-transform: uppercase;
+color: #F0EBE3;
+background: #C0321C;
+padding: 6px 14px;
+border: none;
+cursor: pointer;
+text-decoration: none;
+display: inline-block;
+}
+
+/* ── HERO ── */
+.hero {
+padding-top: 48px;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+border-bottom: 1px solid #1e1e1e;
+}
+
+.hero-main {
+flex: 1;
+display: flex;
+flex-direction: column;
+justify-content: center;
+padding: 44px 20px 20px;
+}
+
+.hero-over {
+font-size: 0.72rem;
+font-weight: 600;
+letter-spacing: 0.22em;
+text-transform: uppercase;
+color: #C0321C;
+margin-bottom: 14px;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+.hero-over::before {
+content: ‘’;
+display: block;
+width: 28px;
+height: 2px;
+background: #C0321C;
+flex-shrink: 0;
+}
+
+.hero-name {
+font-size: clamp(4.5rem, 22vw, 13rem);
+font-weight: 900;
+line-height: 0.88;
+letter-spacing: -0.01em;
+text-transform: uppercase;
+color: #F0EBE3;
+}
+.hero-name .red { color: #C0321C; font-style: italic; display: block; }
+
+.hero-photo {
+width: 100%;
+height: 220px;
+object-fit: cover;
+object-position: top center;
+display: block;
+margin-top: 20px;
+filter: brightness(0.8);
+}
+
+.hero-sub {
+padding: 16px 20px 0;
+border-top: 1px solid #222;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 14px;
+margin-top: 16px;
+}
+
+.sub-label {
+font-size: 0.6rem;
 font-weight: 700;
 letter-spacing: 0.2em;
 text-transform: uppercase;
 color: #555;
-white-space: nowrap;
+margin-bottom: 5px;
+}
+.sub-val {
+font-size: 1.02rem;
+font-weight: 300;
+line-height: 1.45;
+color: #CCCAC6;
+}
+
+/* ── TICKER ── */
+.ticker {
+background: #0E7C6B;
+overflow: hidden;
+height: 38px;
+display: flex;
+align-items: center;
+margin-top: 20px;
 flex-shrink: 0;
 }
-.picker-btns { display: flex; gap: 8px; flex-shrink: 0; }
-.pick-btn {
-font-family: ‘Barlow Condensed’, sans-serif;
+.ticker-track {
+display: flex;
+animation: tick 28s linear infinite;
+white-space: nowrap;
+}
+.ti {
 font-size: 0.7rem;
 font-weight: 700;
-letter-spacing: 0.14em;
+letter-spacing: 0.18em;
 text-transform: uppercase;
-padding: 6px 14px;
-border: 1px solid #333;
-background: transparent;
-color: #666;
-cursor: pointer;
+padding: 0 18px;
+flex-shrink: 0;
+color: #F0EBE3;
 }
-.pick-btn.sel-light { background: #F0EBE3; color: #0E0E0E; border-color: #F0EBE3; }
-.pick-btn.sel-dark  { background: #C0321C; color: #F0EBE3; border-color: #C0321C; }
-.pick-btn.sel-both  { background: #0E7C6B; color: #F0EBE3; border-color: #0E7C6B; }
-
-/* FRAMES */
-.frames { display: flex; gap: 2px; padding-top: 48px; }
-.frame { flex: 1; min-width: 0; }
-@media (max-width: 700px) {
-.frame { display: none; }
-.frame.visible { display: block; }
-}
-
-/* VERSION TAG */
-.vtag {
-position: sticky; top: 48px; z-index: 9;
-text-align: center;
-font-size: 0.6rem; font-weight: 700;
-letter-spacing: 0.2em; text-transform: uppercase;
-padding: 6px;
-}
-.light .vtag { background: #0E7C6B; color: #F0EBE3; }
-.dark  .vtag { background: #C0321C; color: #F0EBE3; }
-
-/* ── THEME COLORS ── */
-.light { background: #F0EBE3; color: #0E0E0E; }
-.dark  { background: #0E0E0E; color: #F0EBE3; }
-
-/* NAV */
-.s-nav {
-position: sticky; top: 57px; z-index: 10;
-display: flex; align-items: center;
-justify-content: space-between;
-padding: 0 16px; height: 44px;
-}
-.light .s-nav { background: #0E0E0E; border-bottom: 2px solid #0E7C6B; }
-.dark  .s-nav { background: #0E0E0E; border-bottom: 2px solid #C0321C; }
-.s-nav-logo { font-weight: 900; font-size: 1rem; letter-spacing: 0.06em; text-transform: uppercase; color: #F0EBE3; }
-.s-nav-logo .t { color: #0E7C6B; }
-.s-book {
-font-family: ‘Barlow Condensed’, sans-serif;
-font-size: 0.68rem; font-weight: 700;
-letter-spacing: 0.14em; text-transform: uppercase;
-padding: 5px 12px; border: none; cursor: pointer;
-text-decoration: none; display: inline-block; color: #F0EBE3;
-}
-.light .s-book { background: #0E7C6B; }
-.dark  .s-book { background: #C0321C; }
-
-/* HERO */
-.s-hero { min-height: 90vh; display: flex; flex-direction: column; }
-.light .s-hero { background: #F0EBE3; border-bottom: 2px solid #0E0E0E; }
-.dark  .s-hero { background: #0E0E0E; border-bottom: 2px solid #222; }
-.s-hero-main { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 32px 16px 20px; }
-.s-over {
-font-size: 0.68rem; font-weight: 600; letter-spacing: 0.22em;
-text-transform: uppercase; margin-bottom: 12px;
-display: flex; align-items: center; gap: 8px;
-}
-.s-over::before { content: ‘’; display: block; width: 22px; height: 2px; flex-shrink: 0; }
-.light .s-over { color: #0E7C6B; }
-.light .s-over::before { background: #0E7C6B; }
-.dark  .s-over { color: #C0321C; }
-.dark  .s-over::before { background: #C0321C; }
-.s-name {
-font-size: clamp(3.6rem, 18vw, 9rem);
-font-weight: 900; line-height: 0.88;
-letter-spacing: -0.01em; text-transform: uppercase;
-}
-.light .s-name { color: #0E0E0E; }
-.dark  .s-name { color: #F0EBE3; }
-.s-red { color: #C0321C; font-style: italic; display: block; }
-
-/* PHOTO */
-.s-photo { width: 100%; height: 200px; object-fit: cover; object-position: top center; display: block; margin-top: 16px; }
-
-/* HERO SUB */
-.s-sub { padding: 14px 16px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.light .s-sub { border-top: 1px solid #D4CEC6; }
-.dark  .s-sub { border-top: 1px solid #222; }
-.s-sub-label { font-size: 0.56rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 4px; }
-.light .s-sub-label { color: #8A8178; }
-.dark  .s-sub-label { color: #555; }
-.s-sub-val { font-size: 0.9rem; font-weight: 300; line-height: 1.4; }
-.light .s-sub-val { color: #0E0E0E; }
-.dark  .s-sub-val { color: #CCCAC6; }
-
-/* TICKER */
-.s-ticker { overflow: hidden; height: 34px; display: flex; align-items: center; margin-top: 16px; }
-.light .s-ticker { background: #C0321C; }
-.dark  .s-ticker { background: #0E7C6B; }
-.s-ticker-track { display: flex; animation: tick 28s linear infinite; white-space: nowrap; }
-.s-ti { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; padding: 0 14px; flex-shrink: 0; color: #F0EBE3; }
-.s-ts { font-size: 0.65rem; font-weight: 700; flex-shrink: 0; color: rgba(240,235,227,0.35); }
+.ts { font-size: 0.7rem; font-weight: 700; flex-shrink: 0; color: rgba(240,235,227,0.3); }
 @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-/* SOCIAL ROW */
-.s-social { display: flex; }
-.light .s-social { background: #F0EBE3; border-bottom: 1px solid #D4CEC6; }
-.dark  .s-social { background: #0E0E0E; border-bottom: 1px solid #1e1e1e; }
-.s-slink {
-flex: 1; padding: 12px 6px; text-align: center;
-text-decoration: none; font-size: 0.58rem; font-weight: 700;
-letter-spacing: 0.1em; text-transform: uppercase;
+/* ── SOCIAL ROW ── */
+.social-row {
+display: flex;
+border-bottom: 1px solid #1e1e1e;
 }
-.light .s-slink { color: #8A8178; background: #F0EBE3; border-right: 1px solid #D4CEC6; }
-.dark  .s-slink { color: #555; background: #0E0E0E; border-right: 1px solid #1e1e1e; }
-.s-slink:last-child { border-right: none; }
-.s-scount { display: block; font-size: 1rem; font-weight: 900; line-height: 1; margin-bottom: 3px; }
-.light .s-scount { color: #0E0E0E; }
-.dark  .s-scount { color: #F0EBE3; }
-
-/* CONTAINER */
-.s-wrap { padding: 0 16px; }
-.s-section { padding: 40px 0; }
-.light .s-section { border-bottom: 1px solid #D4CEC6; }
-.dark  .s-section { border-bottom: 1px solid #1e1e1e; }
-.s-label {
-font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em;
-text-transform: uppercase; margin-bottom: 16px;
-display: flex; align-items: center; gap: 8px;
+.slink {
+flex: 1;
+padding: 14px 8px;
+text-align: center;
+text-decoration: none;
+color: #555;
+font-size: 0.6rem;
+font-weight: 700;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+background: #0E0E0E;
+border-right: 1px solid #1e1e1e;
+transition: background 0.15s, color 0.15s;
 }
-.s-label::after { content: ‘’; flex: 1; height: 1px; }
-.light .s-label { color: #0E7C6B; }
-.light .s-label::after { background: #D4CEC6; }
-.dark  .s-label { color: #0E7C6B; }
-.dark  .s-label::after { background: #1e1e1e; }
-.s-title {
-font-size: clamp(1.8rem, 5.5vw, 3rem); font-weight: 900;
-line-height: 0.92; text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 20px;
+.slink:last-child { border-right: none; }
+.slink:hover { background: #141414; color: #F0EBE3; }
+.scount {
+display: block;
+font-size: 1.15rem;
+font-weight: 900;
+color: #F0EBE3;
+line-height: 1;
+margin-bottom: 4px;
 }
-.light .s-title { color: #0E0E0E; }
-.dark  .s-title  { color: #F0EBE3; }
 
-/* ABOUT */
-.s-about { font-size: 1rem; font-weight: 300; line-height: 1.7; }
-.s-about p + p { margin-top: 14px; }
-.light .s-about { color: #2A2520; }
-.dark  .s-about { color: #BCBAB6; }
-.s-about strong { font-weight: 700; }
-.light .s-about strong { color: #0E0E0E; }
-.dark  .s-about strong  { color: #F0EBE3; }
-.s-pull { margin: 24px 0; padding: 16px 18px; }
-.light .s-pull { background: rgba(14,124,107,0.09); border-left: 3px solid #0E7C6B; }
-.dark  .s-pull { background: rgba(192,50,28,0.1);  border-left: 3px solid #C0321C; }
-.s-pull p { font-size: 1.5rem; font-weight: 700; font-style: italic; line-height: 1.2; }
-.light .s-pull p { color: #0E7C6B; }
-.dark  .s-pull p { color: #C0321C; }
-.s-pull-attr { margin-top: 6px; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
-.light .s-pull-attr { color: #8A8178; }
-.dark  .s-pull-attr  { color: #555; }
+/* ── CONTAINER ── */
+.wrap { padding: 0 20px; max-width: 720px; margin: 0 auto; }
 
-/* ── MERCH SECTION ── */
+.section {
+padding: 52px 0;
+border-bottom: 1px solid #1e1e1e;
+}
+
+.sec-label {
+font-size: 0.63rem;
+font-weight: 700;
+letter-spacing: 0.22em;
+text-transform: uppercase;
+color: #0E7C6B;
+margin-bottom: 18px;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+.sec-label::after { content: ‘’; flex: 1; height: 1px; background: #1e1e1e; }
+
+.sec-title {
+font-size: clamp(2rem, 6vw, 3.4rem);
+font-weight: 900;
+line-height: 0.92;
+text-transform: uppercase;
+letter-spacing: -0.01em;
+margin-bottom: 22px;
+color: #F0EBE3;
+}
+
+/* ── ABOUT ── */
+.about-text {
+font-size: 1.08rem;
+font-weight: 300;
+line-height: 1.72;
+color: #BCBAB6;
+}
+.about-text p + p { margin-top: 16px; }
+.about-text strong { font-weight: 700; color: #F0EBE3; }
+
+.pull {
+margin: 28px 0;
+padding: 18px 20px;
+background: rgba(192,50,28,0.1);
+border-left: 3px solid #C0321C;
+}
+.pull p {
+font-size: 1.7rem;
+font-weight: 700;
+font-style: italic;
+line-height: 1.2;
+color: #C0321C;
+}
+.pull-attr {
+margin-top: 7px;
+font-size: 0.68rem;
+font-weight: 600;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: #555;
+}
+
+/* ── MERCH ── */
 .merch-grid {
 display: grid;
 grid-template-columns: 1fr 1fr;
 gap: 1px;
-margin-top: 4px;
+background: #1e1e1e;
+border: 1px solid #1e1e1e;
 }
-.light .merch-grid { background: #D4CEC6; border: 1px solid #D4CEC6; }
-.dark  .merch-grid { background: #1e1e1e; border: 1px solid #1e1e1e; }
 
 .merch-card {
 text-decoration: none;
 display: flex;
 flex-direction: column;
+background: #141414;
+color: #F0EBE3;
+transition: background 0.15s;
 }
-.light .merch-card { background: #F0EBE3; color: #0E0E0E; }
-.dark  .merch-card { background: #141414; color: #F0EBE3; }
+.merch-card:hover { background: #1a1a1a; }
 
 .merch-img-wrap {
 width: 100%;
 aspect-ratio: 1;
 overflow: hidden;
-position: relative;
 }
 .merch-img {
 width: 100%;
@@ -236,402 +307,512 @@ height: 100%;
 object-fit: cover;
 display: block;
 }
-.merch-no-img {
-width: 100%; height: 100%;
-display: flex; align-items: center; justify-content: center;
-padding: 12px; text-align: center;
+.merch-placeholder {
+width: 100%;
+height: 100%;
+background: #1e1e1e;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 16px;
+text-align: center;
+min-height: 140px;
 }
-.light .merch-no-img { background: #E8E2D9; }
-.dark  .merch-no-img { background: #1e1e1e; }
-.merch-no-img span {
-font-size: 1rem; font-weight: 700; font-style: italic;
-line-height: 1.2; text-transform: uppercase; letter-spacing: 0.02em;
+.merch-placeholder span {
+font-size: 1rem;
+font-weight: 700;
+font-style: italic;
+text-transform: uppercase;
+letter-spacing: 0.02em;
+line-height: 1.2;
+color: #F0EBE3;
 }
-.light .merch-no-img span { color: #0E0E0E; }
-.dark  .merch-no-img span { color: #F0EBE3; }
 
 .merch-info { padding: 10px 12px 4px; flex: 1; }
 .merch-name {
-font-size: 0.78rem; font-weight: 700;
-text-transform: uppercase; letter-spacing: 0.03em;
-line-height: 1.25; margin-bottom: 3px;
+font-size: 0.8rem;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 0.03em;
+line-height: 1.25;
+margin-bottom: 3px;
+color: #F0EBE3;
 }
-.merch-type { font-size: 0.68rem; font-weight: 300; margin-bottom: 2px; }
-.light .merch-type { color: #8A8178; }
-.dark  .merch-type  { color: #555; }
-.merch-price { font-size: 0.82rem; font-weight: 700; }
-.light .merch-price { color: #0E7C6B; }
-.dark  .merch-price { color: #C0321C; }
+.merch-type { font-size: 0.7rem; font-weight: 300; color: #555; margin-bottom: 3px; }
+.merch-price { font-size: 0.85rem; font-weight: 700; color: #C0321C; }
 
 .merch-cta {
 padding: 8px 12px;
-font-size: 0.65rem; font-weight: 700;
-letter-spacing: 0.14em; text-transform: uppercase;
-border-top: 1px solid transparent;
+font-size: 0.65rem;
+font-weight: 700;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+color: #0E7C6B;
+border-top: 1px solid #1e1e1e;
 }
-.light .merch-cta { color: #C0321C; border-top-color: #D4CEC6; }
-.dark  .merch-cta { color: #0E7C6B; border-top-color: #1e1e1e; }
 
 .merch-all {
 display: block;
 margin-top: 12px;
-padding: 12px 14px;
-font-size: 0.72rem; font-weight: 700;
-letter-spacing: 0.14em; text-transform: uppercase;
-text-decoration: none; text-align: center;
-border: 1px solid transparent;
+padding: 13px 14px;
+font-size: 0.72rem;
+font-weight: 700;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+text-decoration: none;
+text-align: center;
+border: 1px solid #333;
+color: #F0EBE3;
+transition: border-color 0.15s, background 0.15s;
 }
-.light .merch-all { border-color: #D4CEC6; color: #0E0E0E; }
-.dark  .merch-all  { border-color: #333; color: #F0EBE3; }
+.merch-all:hover { border-color: #0E7C6B; background: rgba(14,124,107,0.08); }
 
-/* SHOWS */
-.s-show {
-display: grid; grid-template-columns: 44px 1fr auto;
-gap: 10px 12px; align-items: center;
-padding: 12px 0; text-decoration: none; color: inherit;
+/* ── SHOWS ── */
+.show {
+display: grid;
+grid-template-columns: 52px 1fr auto;
+gap: 12px 14px;
+align-items: center;
+padding: 14px 0;
+border-bottom: 1px solid #1e1e1e;
+text-decoration: none;
+color: #F0EBE3;
 }
-.light .s-show { border-bottom: 1px solid #D4CEC6; }
-.dark  .s-show { border-bottom: 1px solid #1e1e1e; }
-.s-show:last-child { border-bottom: none; }
-.s-day { font-size: 1.7rem; font-weight: 900; line-height: 1; text-align: right; }
-.light .s-day { color: #0E0E0E; }
-.dark  .s-day { color: #F0EBE3; }
-.s-mon { font-size: 0.52rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-align: right; margin-top: 1px; }
-.light .s-mon { color: #0E7C6B; }
-.dark  .s-mon { color: #C0321C; }
-.s-venue { font-size: 0.9rem; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; }
-.light .s-venue { color: #0E0E0E; }
-.dark  .s-venue { color: #F0EBE3; }
-.s-meta { font-size: 0.78rem; font-weight: 300; margin-top: 2px; }
-.light .s-meta { color: #8A8178; }
-.dark  .s-meta  { color: #555; }
-.s-badge { font-size: 0.55rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 8px; border: 1px solid currentColor; white-space: nowrap; }
-.s-on   { color: #0E7C6B; }
-.s-sold { color: #8A8178; }
-.dark .s-sold { color: #444; }
+.show:last-child { border-bottom: none; }
+.show:hover .show-venue { color: #C0321C; }
 
-/* CONTACT */
-.s-cgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: 20px; }
-.light .s-cgrid { background: #D4CEC6; border: 1px solid #D4CEC6; }
-.dark  .s-cgrid { background: #1e1e1e; border: 1px solid #1e1e1e; }
-.s-ccard { padding: 18px 14px; cursor: pointer; display: block; text-decoration: none; border-top: 3px solid transparent; }
-.light .s-ccard { background: #F0EBE3; color: #0E0E0E; }
-.dark  .s-ccard { background: #141414; color: #F0EBE3; }
-.s-ctitle { font-size: 0.95rem; font-weight: 900; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 4px; }
-.s-cdesc { font-size: 0.8rem; font-weight: 300; line-height: 1.35; }
-.light .s-cdesc { color: #8A8178; }
-.dark  .s-cdesc  { color: #555; }
+.show-day {
+font-size: 1.9rem;
+font-weight: 900;
+line-height: 1;
+text-align: right;
+color: #F0EBE3;
+}
+.show-month {
+font-size: 0.56rem;
+font-weight: 700;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: #C0321C;
+text-align: right;
+margin-top: 2px;
+}
+.show-venue {
+font-size: 0.95rem;
+font-weight: 700;
+letter-spacing: 0.02em;
+text-transform: uppercase;
+transition: color 0.15s;
+}
+.show-meta {
+font-size: 0.82rem;
+font-weight: 300;
+color: #555;
+margin-top: 3px;
+}
+.badge {
+font-size: 0.58rem;
+font-weight: 700;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+padding: 3px 8px;
+border: 1px solid currentColor;
+white-space: nowrap;
+}
+.on   { color: #0E7C6B; }
+.sold { color: #444; }
 
-/* FOOTER */
-.s-foot { padding: 20px 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; }
-.light .s-foot { background: #F0EBE3; border-top: 2px solid #0E0E0E; }
-.dark  .s-foot { background: #0E0E0E; border-top: 1px solid #222; }
-.s-fname { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
-.s-fnote { font-size: 0.65rem; font-weight: 300; }
-.light .s-fnote { color: #8A8178; }
-.dark  .s-fnote  { color: #555; }
+/* ── CONTACT ── */
+.cgrid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 1px;
+background: #1e1e1e;
+border: 1px solid #1e1e1e;
+margin-top: 22px;
+}
+.ccard {
+background: #141414;
+padding: 20px 16px;
+cursor: pointer;
+text-decoration: none;
+color: #F0EBE3;
+display: block;
+border-top: 3px solid transparent;
+transition: background 0.15s;
+}
+.ccard:hover { background: #1a1a1a; }
+.ccard-title {
+font-size: 1rem;
+font-weight: 900;
+letter-spacing: 0.04em;
+text-transform: uppercase;
+margin-bottom: 5px;
+}
+.ccard-desc {
+font-size: 0.82rem;
+font-weight: 300;
+color: #555;
+line-height: 1.35;
+}
 
-/* MODAL */
-.s-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 999; align-items: flex-end; justify-content: center; }
-.s-modal.open { display: flex; }
-.s-msheet { padding: 28px 20px 48px; width: 100%; max-width: 520px; animation: sup 0.28s cubic-bezier(0.22,1,0.36,1); }
-.light .s-msheet { background: #F0EBE3; border-top: 3px solid #C0321C; }
-.dark  .s-msheet { background: #141414; border-top: 3px solid #C0321C; }
-@keyframes sup { from { transform: translateY(100%); } to { transform: translateY(0); } }
-.s-mtitle { font-size: 2rem; font-weight: 900; text-transform: uppercase; margin-bottom: 4px; }
-.light .s-mtitle { color: #0E0E0E; }
-.dark  .s-mtitle  { color: #F0EBE3; }
-.s-msub { font-size: 0.85rem; font-weight: 300; margin-bottom: 18px; }
-.light .s-msub { color: #8A8178; }
-.dark  .s-msub  { color: #555; }
-.s-mopts { display: flex; flex-direction: column; gap: 1px; }
-.light .s-mopts { background: #D4CEC6; border: 1px solid #D4CEC6; }
-.dark  .s-mopts { background: #1e1e1e; border: 1px solid #1e1e1e; }
-.s-mopt { padding: 14px 16px; text-decoration: none; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px; border-left: 3px solid transparent; }
-.light .s-mopt { background: #F0EBE3; color: #0E0E0E; }
-.dark  .s-mopt  { background: #141414; color: #F0EBE3; }
-.s-molabel { font-size: 0.95rem; font-weight: 900; letter-spacing: 0.04em; text-transform: uppercase; }
-.s-modetail { font-size: 0.75rem; font-weight: 300; margin-top: 2px; }
-.light .s-modetail { color: #8A8178; }
-.dark  .s-modetail  { color: #555; }
-.s-mcancel { width: 100%; margin-top: 8px; padding: 12px; background: transparent; font-family: ‘Barlow Condensed’, sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; }
-.light .s-mcancel { border: 1px solid #D4CEC6; color: #8A8178; }
-.dark  .s-mcancel { border: 1px solid #333; color: #555; }
+/* ── FOOTER ── */
+footer {
+padding: 24px 20px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+flex-wrap: wrap;
+gap: 8px;
+border-top: 1px solid #222;
+}
+.foot-name {
+font-size: 0.7rem;
+font-weight: 700;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+color: #F0EBE3;
+}
+.foot-note {
+font-size: 0.7rem;
+font-weight: 300;
+color: #555;
+}
+
+/* ── MODAL ── */
+.modal-bg {
+display: none;
+position: fixed;
+inset: 0;
+background: rgba(0,0,0,0.75);
+z-index: 999;
+align-items: flex-end;
+justify-content: center;
+}
+.modal-bg.open { display: flex; }
+
+.modal-sheet {
+background: #141414;
+border-top: 3px solid #C0321C;
+padding: 32px 20px 52px;
+width: 100%;
+max-width: 520px;
+animation: sheetUp 0.28s cubic-bezier(0.22,1,0.36,1);
+}
+@keyframes sheetUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+.modal-title {
+font-size: 2.2rem;
+font-weight: 900;
+text-transform: uppercase;
+color: #F0EBE3;
+margin-bottom: 4px;
+}
+.modal-sub {
+font-size: 0.88rem;
+font-weight: 300;
+color: #555;
+margin-bottom: 20px;
+}
+
+.modal-opts {
+display: flex;
+flex-direction: column;
+gap: 1px;
+background: #1e1e1e;
+border: 1px solid #1e1e1e;
+}
+.modal-opt {
+background: #141414;
+padding: 15px 16px;
+text-decoration: none;
+color: #F0EBE3;
+display: grid;
+grid-template-columns: 1fr auto;
+align-items: center;
+gap: 12px;
+border-left: 3px solid transparent;
+transition: background 0.15s;
+}
+.modal-opt:hover { background: #1a1a1a; }
+.opt-label {
+font-size: 0.95rem;
+font-weight: 900;
+letter-spacing: 0.04em;
+text-transform: uppercase;
+color: #F0EBE3;
+}
+.opt-detail {
+font-size: 0.75rem;
+font-weight: 300;
+color: #555;
+margin-top: 2px;
+}
+.opt-arrow { color: #555; }
+
+.modal-cancel {
+width: 100%;
+margin-top: 10px;
+padding: 13px;
+background: transparent;
+border: 1px solid #333;
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 0.78rem;
+font-weight: 700;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+color: #555;
+cursor: pointer;
+transition: border-color 0.15s, color 0.15s;
+}
+.modal-cancel:hover { border-color: #F0EBE3; color: #F0EBE3; }
 
 @media (max-width: 480px) {
-.s-cgrid { grid-template-columns: 1fr; }
-.merch-grid { grid-template-columns: 1fr 1fr; }
+.cgrid { grid-template-columns: 1fr; }
+.hero-sub { grid-template-columns: 1fr; }
+.nav-link { display: none; }
 }
 </style>
 
 </head>
 <body>
 
-<div class="picker">
-  <span class="picker-label">Pick your vibe</span>
-  <div class="picker-btns">
-    <button class="pick-btn" id="bL" onclick="show('light')">Light</button>
-    <button class="pick-btn" id="bD" onclick="show('dark')">Dark</button>
-    <button class="pick-btn" id="bB" onclick="show('both')">Both</button>
+<nav>
+  <div class="nav-logo">OMG<span class="t">Its</span>Wicks</div>
+  <div class="nav-links">
+    <a href="#shows" class="nav-link">Shows</a>
+    <a href="#merch" class="nav-link">Merch</a>
+    <a href="#contact" class="nav-link">Contact</a>
+    <a href="#" class="nav-book" onclick="openModal();return false;">Book Wicks</a>
   </div>
-</div>
+</nav>
 
-<div class="frames" id="frames">
+<!-- HERO -->
 
-<!-- ═══ LIGHT ═══ -->
-
-<div class="frame light" id="fLight">
-  <div class="vtag">Option A — Light</div>
-  <nav class="s-nav">
-    <div class="s-nav-logo">OMG<span class="t">Its</span>Wicks</div>
-    <a class="s-book" href="#" onclick="openM('L');return false;">Book Wicks</a>
-  </nav>
-  <div class="s-hero">
-    <div class="s-hero-main">
-      <div class="s-over">Fort Myers, Florida &mdash; Comedian</div>
-      <h1 class="s-name">OMG<span class="s-red">Its</span>Wicks</h1>
-    </div>
-    <img class="s-photo" src="https://omgitswicks.com/images/1200/23073321/image21-J2PsYOkyYqk06zr2Ua78mQ.jpeg" alt="OMGItsWicks" onerror="this.style.display='none'">
-    <div class="s-sub">
-      <div><div class="s-sub-label">Known for</div><div class="s-sub-val">Florida observations. Clean comedy. Free meet &amp; greet every show.</div></div>
-      <div><div class="s-sub-label">Next show</div><div class="s-sub-val">Apr 23 &mdash; McCurdy's, Sarasota</div></div>
-    </div>
-    <div class="s-ticker"><div class="s-ticker-track">
-      <span class="s-ti">OMGItsWicks</span><span class="s-ts">/</span><span class="s-ti">Family-friendly comedy</span><span class="s-ts">/</span><span class="s-ti">1.7M on TikTok</span><span class="s-ts">/</span><span class="s-ti">Sold-out shows statewide</span><span class="s-ts">/</span><span class="s-ti">Free meet &amp; greet every night</span><span class="s-ts">/</span><span class="s-ti">Book Wicks</span><span class="s-ts">/</span>
-      <span class="s-ti">OMGItsWicks</span><span class="s-ts">/</span><span class="s-ti">Family-friendly comedy</span><span class="s-ts">/</span><span class="s-ti">1.7M on TikTok</span><span class="s-ts">/</span><span class="s-ti">Sold-out shows statewide</span><span class="s-ts">/</span><span class="s-ti">Free meet &amp; greet every night</span><span class="s-ts">/</span><span class="s-ti">Book Wicks</span><span class="s-ts">/</span>
-    </div></div>
+<div class="hero">
+  <div class="hero-main">
+    <div class="hero-over">Fort Myers, Florida &mdash; Comedian</div>
+    <h1 class="hero-name">OMG<span class="red">Its</span>Wicks</h1>
   </div>
-  <div class="s-social">
-    <a href="https://tiktok.com/@omgitswicks" target="_blank" class="s-slink"><span class="s-scount">1.7M</span>TikTok</a>
-    <a href="https://instagram.com/omgitswicks" target="_blank" class="s-slink"><span class="s-scount">553K</span>Instagram</a>
-    <a href="https://youtube.com/@omgitswicks" target="_blank" class="s-slink"><span class="s-scount">YouTube</span>@omgitswicks</a>
-    <a href="https://facebook.com/omgitswicks" target="_blank" class="s-slink"><span class="s-scount">685K</span>Facebook</a>
-  </div>
-  <div class="s-wrap">
-    <!-- ABOUT -->
-    <div class="s-section">
-      <div class="s-label">About</div>
-      <div class="s-about">
-        <p>Josh Robinson&mdash;better known as OMGItsWicks&mdash;is a Fort Myers comedian who built one of Florida's largest social media followings by doing one thing well: telling the truth about what it's actually like to live here.</p>
-        <div class="s-pull"><p>"Is it wet? Then it has gators."</p><div class="s-pull-attr">&mdash; on the Florida pond question</div></div>
-        <p>His shows are <strong>family-friendly</strong>. No shock value, no cheap shots. Every show ends with a free meet and greet&mdash;no upcharge, no velvet rope.</p>
-      </div>
+  <img
+    class="hero-photo"
+    src="https://omgitswicks.com/images/900/23073324/image11-p5IaHceuAGTPZI_tBIZ8Mw.jpeg"
+    alt="OMGItsWicks performing"
+    onerror="this.style.display='none'"
+  >
+  <div class="hero-sub">
+    <div>
+      <div class="sub-label">Known for</div>
+      <div class="sub-val">Florida observations. Clean comedy. Free meet &amp; greet after every show.</div>
     </div>
-    <!-- MERCH -->
-    <div class="s-section">
-      <div class="s-label">Merch</div>
-      <h2 class="s-title">Rep Florida</h2>
-      <div class="merch-grid">
-        <a href="https://omgitswicks.myspreadshop.com/but+did+the+waffle+house+close-A69b040413c6a9671924d33d3?productType=812&sellable=0kv4L2GYLLs3mvJD3yXd-812-7&appearance=231" target="_blank" class="merch-card">
-          <div class="merch-img-wrap"><img class="merch-img" src="https://image.spreadshirtmedia.com/image-server/v1/products/T812A231PA4267PT17X65Y8D1058483855W21599H32400/views/1,width=500,height=500,appearanceId=231/but-did-the-waffle-house-close-mens-premium-t-shirt.jpg" alt="Waffle House Tee" onerror="this.parentElement.innerHTML='<div class=\'merch-no-img\'><span>But Did the Waffle House Close</span></div>'"></div>
-          <div class="merch-info"><div class="merch-name">But Did the Waffle House Close</div><div class="merch-type">Premium Tee</div><div class="merch-price">$26.99</div></div>
-          <div class="merch-cta">Shop &rarr;</div>
-        </a>
-        <a href="https://omgitswicks.myspreadshop.com/but+did+the+waffle+house+close-A69b040413c6a9671924d33d3?productType=20&sellable=0kv4L2GYLLs3mvJD3yXd-20-22&appearance=251" target="_blank" class="merch-card">
-          <div class="merch-img-wrap"><img class="merch-img" src="https://image.spreadshirtmedia.com/image-server/v1/products/T20A251PA4162PT17X81Y7D1058483855W16666H25000/views/1,width=500,height=500,appearanceId=251/but-did-the-waffle-house-close-mens-premium-hoodie.jpg" alt="Waffle House Hoodie" onerror="this.parentElement.innerHTML='<div class=\'merch-no-img\'><span>But Did the Waffle House Close</span></div>'"></div>
-          <div class="merch-info"><div class="merch-name">But Did the Waffle House Close</div><div class="merch-type">Premium Hoodie</div><div class="merch-price">$43.99</div></div>
-          <div class="merch-cta">Shop &rarr;</div>
-        </a>
-        <a href="https://omgitswicks.myspreadshop.com/all" target="_blank" class="merch-card">
-          <div class="merch-img-wrap"><div class="merch-no-img"><span>High Level Floridaing</span></div></div>
-          <div class="merch-info"><div class="merch-name">High Level Floridaing</div><div class="merch-type">Premium Tee</div><div class="merch-price">$26.99</div></div>
-          <div class="merch-cta">Shop &rarr;</div>
-        </a>
-        <a href="https://omgitswicks.myspreadshop.com/all" target="_blank" class="merch-card">
-          <div class="merch-img-wrap"><div class="merch-no-img"><span>Left Lane OMGItsWicks</span></div></div>
-          <div class="merch-info"><div class="merch-name">Left Lane OMGItsWicks</div><div class="merch-type">Premium Tee</div><div class="merch-price">$26.99</div></div>
-          <div class="merch-cta">Shop &rarr;</div>
-        </a>
-      </div>
-      <a href="https://omgitswicks.myspreadshop.com/all" target="_blank" class="merch-all">View all merch &rarr;</a>
-    </div>
-    <!-- SHOWS -->
-    <div class="s-section">
-      <div class="s-label">Upcoming shows</div>
-      <h2 class="s-title">On the road</h2>
-      <a href="https://www.etix.com/ticket/p/88075635/" target="_blank" class="s-show"><div><div class="s-day">23</div><div class="s-mon">Apr</div></div><div><div class="s-venue">McCurdy's Comedy Club</div><div class="s-meta">Sarasota, FL &mdash; 7:00 PM</div></div><span class="s-badge s-on">Tickets</span></a>
-      <a href="https://www.etix.com/ticket/p/53545233" target="_blank" class="s-show"><div><div class="s-day">24</div><div class="s-mon">Apr</div></div><div><div class="s-venue">McCurdy's Comedy Club</div><div class="s-meta">Sarasota, FL &mdash; 6:30 &amp; 8:50 PM</div></div><span class="s-badge s-sold">Sold out</span></a>
-      <a href="https://www.etix.com/ticket/p/31167106" target="_blank" class="s-show"><div><div class="s-day">25</div><div class="s-mon">Apr</div></div><div><div class="s-venue">McCurdy's Comedy Club</div><div class="s-meta">Sarasota, FL &mdash; 6:30 &amp; 8:50 PM</div></div><span class="s-badge s-sold">Sold out</span></a>
-      <a href="https://www.ticketmaster.com/omgitswicks-boca-raton-florida-05-02-2026/event/0D00635CF967744F" target="_blank" class="s-show"><div><div class="s-day">2</div><div class="s-mon">May</div></div><div><div class="s-venue">The Studio at Mizner Park</div><div class="s-meta">Boca Raton, FL &mdash; 6:00 &amp; 8:30 PM</div></div><span class="s-badge s-on">Tickets</span></a>
-      <a href="https://visanientertainmentinc.thundertix.com/events/259330" target="_blank" class="s-show"><div><div class="s-day">28</div><div class="s-mon">May</div></div><div><div class="s-venue">Visani Comedy Theatre</div><div class="s-meta">Port Charlotte, FL &mdash; Multiple shows</div></div><span class="s-badge s-sold">Sold out</span></a>
-      <a href="https://0sculturalparktheatreorg.thundertix.com/events/256085" target="_blank" class="s-show"><div><div class="s-day">12</div><div class="s-mon">Jun</div></div><div><div class="s-venue">Cultural Park Theatre</div><div class="s-meta">Cape Coral, FL &mdash; 6:00 &amp; 8:30 PM</div></div><span class="s-badge s-on">Tickets</span></a>
-      <a href="https://punchup.live/show/0c9d8741-e05d-4824-a54c-9ffd5b4fa22b" target="_blank" class="s-show"><div><div class="s-day">10</div><div class="s-mon">Jul</div></div><div><div class="s-venue">Comedy Key West</div><div class="s-meta">Key West, FL &mdash; 7:00 &amp; 9:15 PM</div></div><span class="s-badge s-on">Tickets</span></a>
-      <a href="https://secure.sellingticket.com/design22/clients/index.aspx?designID=38435&OrganizationID=64" target="_blank" class="s-show"><div><div class="s-day">29</div><div class="s-mon">Aug</div></div><div><div class="s-venue">Polk Theatre</div><div class="s-meta">Lakeland, FL &mdash; 7:00 PM</div></div><span class="s-badge s-on">Tickets</span></a>
-      <a href="https://visanientertainmentinc.thundertix.com/performances/3235825/section/58540" target="_blank" class="s-show"><div><div class="s-day">11</div><div class="s-mon">Sep</div></div><div><div class="s-venue">Visani Comedy Theatre</div><div class="s-meta">Port Charlotte, FL &mdash; 6:30 &amp; 9:30 PM</div></div><span class="s-badge s-on">Tickets</span></a>
-      <a href="https://www.offthehookcomedy.com/shows/357429" target="_blank" class="s-show"><div><div class="s-day">5</div><div class="s-mon">Nov</div></div><div><div class="s-venue">Off the Hook Comedy Club</div><div class="s-meta">Naples, FL &mdash; Multiple shows</div></div><span class="s-badge s-on">Tickets</span></a>
-    </div>
-    <!-- CONTACT -->
-    <div class="s-section">
-      <div class="s-label">Contact</div>
-      <h2 class="s-title">Get in touch</h2>
-      <div class="s-cgrid">
-        <div class="s-ccard" onclick="openM('L')" style="border-top-color:#C0321C;"><div class="s-ctitle" style="color:#C0321C;">Book Wicks</div><div class="s-cdesc">Theaters, clubs, corporate, private shows</div></div>
-        <a href="https://omgitswicks.myspreadshop.com/all" target="_blank" class="s-ccard" style="border-top-color:#0E7C6B;"><div class="s-ctitle" style="color:#0E7C6B;">Get merch</div><div class="s-cdesc">Official Spreadshop store</div></a>
-        <div class="s-ccard" onclick="openM('L')" style="border-top-color:#0E7C6B;"><div class="s-ctitle">Media inquiry</div><div class="s-cdesc">Press, interviews, features</div></div>
-        <div class="s-ccard" onclick="openM('L')" style="border-top-color:#0E0E0E;"><div class="s-ctitle">Ask a question</div><div class="s-cdesc">Just reach out</div></div>
-      </div>
+    <div>
+      <div class="sub-label">Next show</div>
+      <div class="sub-val">Apr 23 &mdash; McCurdy's Comedy Club, Sarasota</div>
     </div>
   </div>
-  <footer class="s-foot">
-    <div class="s-fname">OMG<span style="color:#0E7C6B;">Its</span>Wicks &mdash; Fort Myers, FL</div>
-    <div class="s-fnote">Free meet &amp; greet every night.</div>
-  </footer>
-  <div class="s-modal" id="mL" onclick="if(event.target===this)closeM('L')">
-    <div class="s-msheet light">
-      <div class="s-mtitle">Get in touch</div><div class="s-msub">Choose how to connect.</div>
-      <div class="s-mopts light">
-        <a href="sms:17273539673?body=Hi%20Wicks%20team%2C%20booking%20inquiry." class="s-mopt light" style="border-left-color:#C0321C;"><div><div class="s-molabel">Book a show</div><div class="s-modetail">Text the team</div></div><span>&rarr;</span></a>
-        <a href="https://omgitswicks.myspreadshop.com/all" target="_blank" class="s-mopt light" style="border-left-color:#0E7C6B;"><div><div class="s-molabel">Get merch</div><div class="s-modetail">Official Spreadshop</div></div><span>&rarr;</span></a>
-        <a href="sms:17273539673?body=Media%20inquiry%20for%20OMGItsWicks." class="s-mopt light" style="border-left-color:#0E7C6B;"><div><div class="s-molabel">Media inquiry</div><div class="s-modetail">Press &amp; interviews</div></div><span>&rarr;</span></a>
-        <a href="sms:17273539673?body=Hi%2C%20I%20have%20a%20question." class="s-mopt light" style="border-left-color:#0E7C6B;"><div><div class="s-molabel">Ask a question</div><div class="s-modetail">Text directly</div></div><span>&rarr;</span></a>
-        <a href="tel:17273539673" class="s-mopt light" style="border-left-color:#0E0E0E;"><div><div class="s-molabel">Call us</div><div class="s-modetail">(727) 353-9673</div></div><span>&rarr;</span></a>
-      </div>
-      <button class="s-mcancel light" onclick="closeM('L')">Cancel</button>
+  <div class="ticker">
+    <div class="ticker-track">
+      <span class="ti">OMGItsWicks</span><span class="ts">&nbsp;/&nbsp;</span>
+      <span class="ti">Family-friendly comedy</span><span class="ts">&nbsp;/&nbsp;</span>
+      <span class="ti">Fort Myers, FL</span><span class="ts">&nbsp;/&nbsp;</span>
+      <span class="ti">1.7M on TikTok</span><span class="ts">&nbsp;/&nbsp;</span>
+      <span class="ti">Sold-out shows statewide</span><span class="ts">&nbsp;/&nbsp;</span>
+      <span class="ti">Free meet &amp; greet every night</span><span class="ts">&nbsp;/&nbsp;</span>
+      <span class="ti">Book Wicks</span><span class="ts">&nbsp;/&nbsp;</span>
+      <span class="ti">OMGItsWicks</span><span class="ts">&nbsp;/&nbsp;</span>
+      <span class="ti">Family-friendly comedy</span><span class="ts">&nbsp;/&nbsp;</span>
+      <span class="ti">Fort Myers, FL</span><span class="ts">&nbsp;/&nbsp;</span>
+      <span class="ti">1.7M on TikTok</span><span class="ts">&nbsp;/&nbsp;</span>
+      <span class="ti">Sold-out shows statewide</span><span class="ts">&nbsp;/&nbsp;</span>
+      <span class="ti">Free meet &amp; greet every night</span><span class="ts">&nbsp;/&nbsp;</span>
+      <span class="ti">Book Wicks</span><span class="ts">&nbsp;/&nbsp;</span>
     </div>
   </div>
 </div>
 
-<!-- ═══ DARK ═══ -->
+<!-- SOCIAL -->
 
-<div class="frame dark" id="fDark">
-  <div class="vtag">Option B — Dark</div>
-  <nav class="s-nav">
-    <div class="s-nav-logo">OMG<span class="t">Its</span>Wicks</div>
-    <a class="s-book" href="#" onclick="openM('D');return false;">Book Wicks</a>
-  </nav>
-  <div class="s-hero">
-    <div class="s-hero-main">
-      <div class="s-over">Fort Myers, Florida &mdash; Comedian</div>
-      <h1 class="s-name">OMG<span class="s-red">Its</span>Wicks</h1>
-    </div>
-    <img class="s-photo" src="https://omgitswicks.com/images/900/23073324/image11-p5IaHceuAGTPZI_tBIZ8Mw.jpeg" alt="OMGItsWicks" style="filter:brightness(0.8);" onerror="this.style.display='none'">
-    <div class="s-sub">
-      <div><div class="s-sub-label">Known for</div><div class="s-sub-val">Florida observations. Clean comedy. Free meet &amp; greet every show.</div></div>
-      <div><div class="s-sub-label">Next show</div><div class="s-sub-val">Apr 23 &mdash; McCurdy's, Sarasota</div></div>
-    </div>
-    <div class="s-ticker"><div class="s-ticker-track">
-      <span class="s-ti">OMGItsWicks</span><span class="s-ts">/</span><span class="s-ti">Family-friendly comedy</span><span class="s-ts">/</span><span class="s-ti">1.7M on TikTok</span><span class="s-ts">/</span><span class="s-ti">Sold-out shows statewide</span><span class="s-ts">/</span><span class="s-ti">Free meet &amp; greet every night</span><span class="s-ts">/</span><span class="s-ti">Book Wicks</span><span class="s-ts">/</span>
-      <span class="s-ti">OMGItsWicks</span><span class="s-ts">/</span><span class="s-ti">Family-friendly comedy</span><span class="s-ts">/</span><span class="s-ti">1.7M on TikTok</span><span class="s-ts">/</span><span class="s-ti">Sold-out shows statewide</span><span class="s-ts">/</span><span class="s-ti">Free meet &amp; greet every night</span><span class="s-ts">/</span><span class="s-ti">Book Wicks</span><span class="s-ts">/</span>
-    </div></div>
-  </div>
-  <div class="s-social">
-    <a href="https://tiktok.com/@omgitswicks" target="_blank" class="s-slink"><span class="s-scount">1.7M</span>TikTok</a>
-    <a href="https://instagram.com/omgitswicks" target="_blank" class="s-slink"><span class="s-scount">553K</span>Instagram</a>
-    <a href="https://youtube.com/@omgitswicks" target="_blank" class="s-slink"><span class="s-scount">YouTube</span>@omgitswicks</a>
-    <a href="https://facebook.com/omgitswicks" target="_blank" class="s-slink"><span class="s-scount">685K</span>Facebook</a>
-  </div>
-  <div class="s-wrap">
-    <div class="s-section">
-      <div class="s-label">About</div>
-      <div class="s-about">
-        <p>Josh Robinson&mdash;better known as OMGItsWicks&mdash;is a Fort Myers comedian who built one of Florida's largest social media followings by doing one thing well: telling the truth about what it's actually like to live here.</p>
-        <div class="s-pull"><p>"Is it wet? Then it has gators."</p><div class="s-pull-attr">&mdash; on the Florida pond question</div></div>
-        <p>His shows are <strong>family-friendly</strong>. No shock value, no cheap shots. Every show ends with a free meet and greet&mdash;no upcharge, no velvet rope.</p>
-      </div>
-    </div>
-    <!-- MERCH DARK -->
-    <div class="s-section">
-      <div class="s-label">Merch</div>
-      <h2 class="s-title">Rep Florida</h2>
-      <div class="merch-grid">
-        <a href="https://omgitswicks.myspreadshop.com/but+did+the+waffle+house+close-A69b040413c6a9671924d33d3?productType=812&sellable=0kv4L2GYLLs3mvJD3yXd-812-7&appearance=231" target="_blank" class="merch-card">
-          <div class="merch-img-wrap"><img class="merch-img" src="https://image.spreadshirtmedia.com/image-server/v1/products/T812A231PA4267PT17X65Y8D1058483855W21599H32400/views/1,width=500,height=500,appearanceId=231/but-did-the-waffle-house-close-mens-premium-t-shirt.jpg" alt="Waffle House Tee" onerror="this.parentElement.innerHTML='<div class=\'merch-no-img\'><span>But Did the Waffle House Close</span></div>'"></div>
-          <div class="merch-info"><div class="merch-name">But Did the Waffle House Close</div><div class="merch-type">Premium Tee</div><div class="merch-price">$26.99</div></div>
-          <div class="merch-cta">Shop &rarr;</div>
-        </a>
-        <a href="https://omgitswicks.myspreadshop.com/but+did+the+waffle+house+close-A69b040413c6a9671924d33d3?productType=20&sellable=0kv4L2GYLLs3mvJD3yXd-20-22&appearance=251" target="_blank" class="merch-card">
-          <div class="merch-img-wrap"><img class="merch-img" src="https://image.spreadshirtmedia.com/image-server/v1/products/T20A251PA4162PT17X81Y7D1058483855W16666H25000/views/1,width=500,height=500,appearanceId=251/but-did-the-waffle-house-close-mens-premium-hoodie.jpg" alt="Waffle House Hoodie" onerror="this.parentElement.innerHTML='<div class=\'merch-no-img\'><span>But Did the Waffle House Close</span></div>'"></div>
-          <div class="merch-info"><div class="merch-name">But Did the Waffle House Close</div><div class="merch-type">Premium Hoodie</div><div class="merch-price">$43.99</div></div>
-          <div class="merch-cta">Shop &rarr;</div>
-        </a>
-        <a href="https://omgitswicks.myspreadshop.com/all" target="_blank" class="merch-card">
-          <div class="merch-img-wrap"><div class="merch-no-img"><span>High Level Floridaing</span></div></div>
-          <div class="merch-info"><div class="merch-name">High Level Floridaing</div><div class="merch-type">Premium Tee</div><div class="merch-price">$26.99</div></div>
-          <div class="merch-cta">Shop &rarr;</div>
-        </a>
-        <a href="https://omgitswicks.myspreadshop.com/all" target="_blank" class="merch-card">
-          <div class="merch-img-wrap"><div class="merch-no-img"><span>Left Lane OMGItsWicks</span></div></div>
-          <div class="merch-info"><div class="merch-name">Left Lane OMGItsWicks</div><div class="merch-type">Premium Tee</div><div class="merch-price">$26.99</div></div>
-          <div class="merch-cta">Shop &rarr;</div>
-        </a>
-      </div>
-      <a href="https://omgitswicks.myspreadshop.com/all" target="_blank" class="merch-all">View all merch &rarr;</a>
-    </div>
-    <!-- SHOWS DARK -->
-    <div class="s-section">
-      <div class="s-label">Upcoming shows</div>
-      <h2 class="s-title">On the road</h2>
-      <a href="https://www.etix.com/ticket/p/88075635/" target="_blank" class="s-show"><div><div class="s-day">23</div><div class="s-mon">Apr</div></div><div><div class="s-venue">McCurdy's Comedy Club</div><div class="s-meta">Sarasota, FL &mdash; 7:00 PM</div></div><span class="s-badge s-on">Tickets</span></a>
-      <a href="https://www.etix.com/ticket/p/53545233" target="_blank" class="s-show"><div><div class="s-day">24</div><div class="s-mon">Apr</div></div><div><div class="s-venue">McCurdy's Comedy Club</div><div class="s-meta">Sarasota, FL &mdash; 6:30 &amp; 8:50 PM</div></div><span class="s-badge s-sold">Sold out</span></a>
-      <a href="https://www.etix.com/ticket/p/31167106" target="_blank" class="s-show"><div><div class="s-day">25</div><div class="s-mon">Apr</div></div><div><div class="s-venue">McCurdy's Comedy Club</div><div class="s-meta">Sarasota, FL &mdash; 6:30 &amp; 8:50 PM</div></div><span class="s-badge s-sold">Sold out</span></a>
-      <a href="https://www.ticketmaster.com/omgitswicks-boca-raton-florida-05-02-2026/event/0D00635CF967744F" target="_blank" class="s-show"><div><div class="s-day">2</div><div class="s-mon">May</div></div><div><div class="s-venue">The Studio at Mizner Park</div><div class="s-meta">Boca Raton, FL &mdash; 6:00 &amp; 8:30 PM</div></div><span class="s-badge s-on">Tickets</span></a>
-      <a href="https://visanientertainmentinc.thundertix.com/events/259330" target="_blank" class="s-show"><div><div class="s-day">28</div><div class="s-mon">May</div></div><div><div class="s-venue">Visani Comedy Theatre</div><div class="s-meta">Port Charlotte, FL &mdash; Multiple shows</div></div><span class="s-badge s-sold">Sold out</span></a>
-      <a href="https://0sculturalparktheatreorg.thundertix.com/events/256085" target="_blank" class="s-show"><div><div class="s-day">12</div><div class="s-mon">Jun</div></div><div><div class="s-venue">Cultural Park Theatre</div><div class="s-meta">Cape Coral, FL &mdash; 6:00 &amp; 8:30 PM</div></div><span class="s-badge s-on">Tickets</span></a>
-      <a href="https://punchup.live/show/0c9d8741-e05d-4824-a54c-9ffd5b4fa22b" target="_blank" class="s-show"><div><div class="s-day">10</div><div class="s-mon">Jul</div></div><div><div class="s-venue">Comedy Key West</div><div class="s-meta">Key West, FL &mdash; 7:00 &amp; 9:15 PM</div></div><span class="s-badge s-on">Tickets</span></a>
-      <a href="https://secure.sellingticket.com/design22/clients/index.aspx?designID=38435&OrganizationID=64" target="_blank" class="s-show"><div><div class="s-day">29</div><div class="s-mon">Aug</div></div><div><div class="s-venue">Polk Theatre</div><div class="s-meta">Lakeland, FL &mdash; 7:00 PM</div></div><span class="s-badge s-on">Tickets</span></a>
-      <a href="https://visanientertainmentinc.thundertix.com/performances/3235825/section/58540" target="_blank" class="s-show"><div><div class="s-day">11</div><div class="s-mon">Sep</div></div><div><div class="s-venue">Visani Comedy Theatre</div><div class="s-meta">Port Charlotte, FL &mdash; 6:30 &amp; 9:30 PM</div></div><span class="s-badge s-on">Tickets</span></a>
-      <a href="https://www.offthehookcomedy.com/shows/357429" target="_blank" class="s-show"><div><div class="s-day">5</div><div class="s-mon">Nov</div></div><div><div class="s-venue">Off the Hook Comedy Club</div><div class="s-meta">Naples, FL &mdash; Multiple shows</div></div><span class="s-badge s-on">Tickets</span></a>
-    </div>
-    <!-- CONTACT DARK -->
-    <div class="s-section">
-      <div class="s-label">Contact</div>
-      <h2 class="s-title">Get in touch</h2>
-      <div class="s-cgrid">
-        <div class="s-ccard" onclick="openM('D')" style="border-top-color:#C0321C;"><div class="s-ctitle" style="color:#C0321C;">Book Wicks</div><div class="s-cdesc">Theaters, clubs, corporate, private shows</div></div>
-        <a href="https://omgitswicks.myspreadshop.com/all" target="_blank" class="s-ccard" style="border-top-color:#0E7C6B;"><div class="s-ctitle" style="color:#0E7C6B;">Get merch</div><div class="s-cdesc">Official Spreadshop store</div></a>
-        <div class="s-ccard" onclick="openM('D')" style="border-top-color:#0E7C6B;"><div class="s-ctitle">Media inquiry</div><div class="s-cdesc">Press, interviews, features</div></div>
-        <div class="s-ccard" onclick="openM('D')" style="border-top-color:#333;"><div class="s-ctitle">Ask a question</div><div class="s-cdesc">Just reach out</div></div>
-      </div>
-    </div>
-  </div>
-  <footer class="s-foot">
-    <div class="s-fname">OMG<span style="color:#0E7C6B;">Its</span>Wicks &mdash; Fort Myers, FL</div>
-    <div class="s-fnote">Free meet &amp; greet every night.</div>
-  </footer>
-  <div class="s-modal" id="mD" onclick="if(event.target===this)closeM('D')">
-    <div class="s-msheet dark">
-      <div class="s-mtitle">Get in touch</div><div class="s-msub">Choose how to connect.</div>
-      <div class="s-mopts dark">
-        <a href="sms:17273539673?body=Hi%20Wicks%20team%2C%20booking%20inquiry." class="s-mopt dark" style="border-left-color:#C0321C;"><div><div class="s-molabel">Book a show</div><div class="s-modetail">Text the team</div></div><span>&rarr;</span></a>
-        <a href="https://omgitswicks.myspreadshop.com/all" target="_blank" class="s-mopt dark" style="border-left-color:#0E7C6B;"><div><div class="s-molabel">Get merch</div><div class="s-modetail">Official Spreadshop</div></div><span>&rarr;</span></a>
-        <a href="sms:17273539673?body=Media%20inquiry%20for%20OMGItsWicks." class="s-mopt dark" style="border-left-color:#0E7C6B;"><div><div class="s-molabel">Media inquiry</div><div class="s-modetail">Press &amp; interviews</div></div><span>&rarr;</span></a>
-        <a href="sms:17273539673?body=Hi%2C%20I%20have%20a%20question." class="s-mopt dark" style="border-left-color:#0E7C6B;"><div><div class="s-molabel">Ask a question</div><div class="s-modetail">Text directly</div></div><span>&rarr;</span></a>
-        <a href="tel:17273539673" class="s-mopt dark" style="border-left-color:#444;"><div><div class="s-molabel">Call us</div><div class="s-modetail">(727) 353-9673</div></div><span>&rarr;</span></a>
-      </div>
-      <button class="s-mcancel dark" onclick="closeM('D')">Cancel</button>
-    </div>
-  </div>
+<div class="social-row">
+  <a href="https://tiktok.com/@omgitswicks" target="_blank" class="slink"><span class="scount">1.7M</span>TikTok</a>
+  <a href="https://instagram.com/omgitswicks" target="_blank" class="slink"><span class="scount">553K</span>Instagram</a>
+  <a href="https://youtube.com/@omgitswicks" target="_blank" class="slink"><span class="scount">YouTube</span>@omgitswicks</a>
+  <a href="https://facebook.com/omgitswicks" target="_blank" class="slink"><span class="scount">685K</span>Facebook</a>
 </div>
 
-</div><!-- end frames -->
+<div class="wrap">
+
+  <!-- ABOUT -->
+
+  <div class="section">
+    <div class="sec-label">About</div>
+    <div class="about-text">
+      <p>Josh Robinson&mdash;better known as OMGItsWicks&mdash;is a Fort Myers comedian who built one of Florida's largest social media followings by doing one thing well: telling the truth about what it's actually like to live here.</p>
+      <div class="pull">
+        <p>"Is it wet? Then it has gators."</p>
+        <div class="pull-attr">&mdash; on the Florida pond question</div>
+      </div>
+      <p>He grew up in Southwest Florida and has spent years learning the rest of the state one show at a time&mdash;Panhandle to Keys, small clubs to sold-out theaters. Gators, Publix density, snowbirds, pythons, tourists encountering things Floridians stopped noticing years ago.</p>
+      <p>His shows are <strong>family-friendly</strong>. No shock value, no cheap shots. Every show ends with a free meet and greet&mdash;no upcharge, no velvet rope. He's been doing it from the start.</p>
+    </div>
+  </div>
+
+  <!-- MERCH -->
+
+  <div class="section" id="merch">
+    <div class="sec-label">Merch</div>
+    <h2 class="sec-title">Rep Florida</h2>
+    <div class="merch-grid">
+      <a href="https://omgitswicks.myspreadshop.com/but+did+the+waffle+house+close-A69b040413c6a9671924d33d3?productType=812&sellable=0kv4L2GYLLs3mvJD3yXd-812-7&appearance=231" target="_blank" class="merch-card">
+        <div class="merch-img-wrap">
+          <img class="merch-img"
+            src="https://image.spreadshirtmedia.com/image-server/v1/products/T812A231PA4267PT17X65Y8D1058483855W21599H32400/views/1,width=500,height=500,appearanceId=231/but-did-the-waffle-house-close-mens-premium-t-shirt.jpg"
+            alt="But Did the Waffle House Close Tee"
+            onerror="this.parentElement.innerHTML='<div class=\'merch-placeholder\'><span>But Did the Waffle House Close</span></div>'"
+          >
+        </div>
+        <div class="merch-info">
+          <div class="merch-name">But Did the Waffle House Close</div>
+          <div class="merch-type">Premium Tee &mdash; Men's</div>
+          <div class="merch-price">$26.99</div>
+        </div>
+        <div class="merch-cta">Shop &rarr;</div>
+      </a>
+
+```
+  <a href="https://omgitswicks.myspreadshop.com/but+did+the+waffle+house+close-A69b040413c6a9671924d33d3?productType=20&sellable=0kv4L2GYLLs3mvJD3yXd-20-22&appearance=251" target="_blank" class="merch-card">
+    <div class="merch-img-wrap">
+      <img class="merch-img"
+        src="https://image.spreadshirtmedia.com/image-server/v1/products/T20A251PA4162PT17X81Y7D1058483855W16666H25000/views/1,width=500,height=500,appearanceId=251/but-did-the-waffle-house-close-mens-premium-hoodie.jpg"
+        alt="But Did the Waffle House Close Hoodie"
+        onerror="this.parentElement.innerHTML='<div class=\'merch-placeholder\'><span>But Did the Waffle House Close</span></div>'"
+      >
+    </div>
+    <div class="merch-info">
+      <div class="merch-name">But Did the Waffle House Close</div>
+      <div class="merch-type">Premium Hoodie</div>
+      <div class="merch-price">$43.99</div>
+    </div>
+    <div class="merch-cta">Shop &rarr;</div>
+  </a>
+
+  <a href="https://omgitswicks.myspreadshop.com/all" target="_blank" class="merch-card">
+    <div class="merch-img-wrap">
+      <div class="merch-placeholder"><span>High Level Floridaing</span></div>
+    </div>
+    <div class="merch-info">
+      <div class="merch-name">High Level Floridaing</div>
+      <div class="merch-type">Premium Tee</div>
+      <div class="merch-price">$26.99</div>
+    </div>
+    <div class="merch-cta">Shop &rarr;</div>
+  </a>
+
+  <a href="https://omgitswicks.myspreadshop.com/all" target="_blank" class="merch-card">
+    <div class="merch-img-wrap">
+      <div class="merch-placeholder"><span>Left Lane OMGItsWicks</span></div>
+    </div>
+    <div class="merch-info">
+      <div class="merch-name">Left Lane OMGItsWicks</div>
+      <div class="merch-type">Premium Tee</div>
+      <div class="merch-price">$26.99</div>
+    </div>
+    <div class="merch-cta">Shop &rarr;</div>
+  </a>
+</div>
+<a href="https://omgitswicks.myspreadshop.com/all" target="_blank" class="merch-all">View all merch &rarr;</a>
+```
+
+  </div>
+
+  <!-- SHOWS -->
+
+  <div class="section" id="shows">
+    <div class="sec-label">Upcoming shows</div>
+    <h2 class="sec-title">On the road</h2>
+
+```
+<a href="https://www.etix.com/ticket/p/88075635/" target="_blank" class="show"><div><div class="show-day">23</div><div class="show-month">Apr</div></div><div><div class="show-venue">McCurdy's Comedy Club</div><div class="show-meta">Sarasota, FL &mdash; 7:00 PM</div></div><span class="badge on">Tickets</span></a>
+<a href="https://www.etix.com/ticket/p/53545233" target="_blank" class="show"><div><div class="show-day">24</div><div class="show-month">Apr</div></div><div><div class="show-venue">McCurdy's Comedy Club</div><div class="show-meta">Sarasota, FL &mdash; 6:30 &amp; 8:50 PM</div></div><span class="badge sold">Sold out</span></a>
+<a href="https://www.etix.com/ticket/p/31167106" target="_blank" class="show"><div><div class="show-day">25</div><div class="show-month">Apr</div></div><div><div class="show-venue">McCurdy's Comedy Club</div><div class="show-meta">Sarasota, FL &mdash; 6:30 &amp; 8:50 PM</div></div><span class="badge sold">Sold out</span></a>
+<a href="https://www.ticketmaster.com/omgitswicks-boca-raton-florida-05-02-2026/event/0D00635CF967744F" target="_blank" class="show"><div><div class="show-day">2</div><div class="show-month">May</div></div><div><div class="show-venue">The Studio at Mizner Park</div><div class="show-meta">Boca Raton, FL &mdash; 6:00 &amp; 8:30 PM</div></div><span class="badge on">Tickets</span></a>
+<a href="https://visanientertainmentinc.thundertix.com/events/259330" target="_blank" class="show"><div><div class="show-day">28</div><div class="show-month">May</div></div><div><div class="show-venue">Visani Comedy Theatre</div><div class="show-meta">Port Charlotte, FL &mdash; Multiple shows</div></div><span class="badge sold">Sold out</span></a>
+<a href="https://0sculturalparktheatreorg.thundertix.com/events/256085" target="_blank" class="show"><div><div class="show-day">12</div><div class="show-month">Jun</div></div><div><div class="show-venue">Cultural Park Theatre</div><div class="show-meta">Cape Coral, FL &mdash; 6:00 &amp; 8:30 PM</div></div><span class="badge on">Tickets</span></a>
+<a href="https://punchup.live/show/0c9d8741-e05d-4824-a54c-9ffd5b4fa22b" target="_blank" class="show"><div><div class="show-day">10</div><div class="show-month">Jul</div></div><div><div class="show-venue">Comedy Key West</div><div class="show-meta">Key West, FL &mdash; 7:00 &amp; 9:15 PM</div></div><span class="badge on">Tickets</span></a>
+<a href="https://secure.sellingticket.com/design22/clients/index.aspx?designID=38435&OrganizationID=64" target="_blank" class="show"><div><div class="show-day">29</div><div class="show-month">Aug</div></div><div><div class="show-venue">Polk Theatre</div><div class="show-meta">Lakeland, FL &mdash; 7:00 PM</div></div><span class="badge on">Tickets</span></a>
+<a href="https://visanientertainmentinc.thundertix.com/performances/3235825/section/58540" target="_blank" class="show"><div><div class="show-day">11</div><div class="show-month">Sep</div></div><div><div class="show-venue">Visani Comedy Theatre</div><div class="show-meta">Port Charlotte, FL &mdash; 6:30 &amp; 9:30 PM</div></div><span class="badge on">Tickets</span></a>
+<a href="https://www.offthehookcomedy.com/shows/357429" target="_blank" class="show"><div><div class="show-day">5</div><div class="show-month">Nov</div></div><div><div class="show-venue">Off the Hook Comedy Club</div><div class="show-meta">Naples, FL &mdash; Multiple shows</div></div><span class="badge on">Tickets</span></a>
+```
+
+  </div>
+
+  <!-- CONTACT -->
+
+  <div class="section" id="contact">
+    <div class="sec-label">Contact</div>
+    <h2 class="sec-title">Get in touch</h2>
+    <p style="font-size:0.95rem;font-weight:300;color:#555;line-height:1.6;">Booking, media, merch, or a question&mdash;tap an option and we'll connect you directly.</p>
+    <div class="cgrid">
+      <div class="ccard" onclick="openModal()" style="border-top-color:#C0321C;"><div class="ccard-title" style="color:#C0321C;">Book Wicks</div><div class="ccard-desc">Theaters, clubs, corporate, private shows</div></div>
+      <a href="https://omgitswicks.myspreadshop.com/all" target="_blank" class="ccard" style="border-top-color:#0E7C6B;"><div class="ccard-title" style="color:#0E7C6B;">Get merch</div><div class="ccard-desc">Official Spreadshop store</div></a>
+      <div class="ccard" onclick="openModal()" style="border-top-color:#0E7C6B;"><div class="ccard-title">Media inquiry</div><div class="ccard-desc">Press, interviews, features</div></div>
+      <div class="ccard" onclick="openModal()" style="border-top-color:#333;"><div class="ccard-title">Ask a question</div><div class="ccard-desc">Just reach out</div></div>
+    </div>
+  </div>
+
+</div><!-- end wrap -->
+
+<footer>
+  <div class="foot-name">OMG<span style="color:#0E7C6B;">Its</span>Wicks &mdash; Fort Myers, FL</div>
+  <div class="foot-note">All shows family-friendly. Free meet &amp; greet every night.</div>
+</footer>
+
+<!-- MODAL -->
+
+<div class="modal-bg" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal-sheet">
+    <div class="modal-title">Get in touch</div>
+    <div class="modal-sub">Choose how you want to connect.</div>
+    <div class="modal-opts">
+      <a href="sms:17273539673?body=Hi%20Wicks%20team%2C%20I%27d%20like%20to%20inquire%20about%20booking." class="modal-opt" style="border-left-color:#C0321C;">
+        <div><div class="opt-label">Book a show</div><div class="opt-detail">Text the team directly</div></div>
+        <span class="opt-arrow">&rarr;</span>
+      </a>
+      <a href="https://omgitswicks.myspreadshop.com/all" target="_blank" class="modal-opt" style="border-left-color:#0E7C6B;">
+        <div><div class="opt-label">Get merch</div><div class="opt-detail">Official Spreadshop store</div></div>
+        <span class="opt-arrow">&rarr;</span>
+      </a>
+      <a href="sms:17273539673?body=Hi%2C%20media%20inquiry%20for%20OMGItsWicks." class="modal-opt" style="border-left-color:#0E7C6B;">
+        <div><div class="opt-label">Media inquiry</div><div class="opt-detail">Press, interviews, features</div></div>
+        <span class="opt-arrow">&rarr;</span>
+      </a>
+      <a href="sms:17273539673?body=Hey%20Wicks%20team%2C%20I%20have%20a%20question." class="modal-opt" style="border-left-color:#0E7C6B;">
+        <div><div class="opt-label">Ask a question</div><div class="opt-detail">Text us directly</div></div>
+        <span class="opt-arrow">&rarr;</span>
+      </a>
+      <a href="tel:17273539673" class="modal-opt" style="border-left-color:#444;">
+        <div><div class="opt-label">Call us</div><div class="opt-detail">(727) 353-9673</div></div>
+        <span class="opt-arrow">&rarr;</span>
+      </a>
+    </div>
+    <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+  </div>
+</div>
 
 <script>
-function show(w) {
-  var fL = document.getElementById('fLight');
-  var fD = document.getElementById('fDark');
-  var bL = document.getElementById('bL');
-  var bD = document.getElementById('bD');
-  var bB = document.getElementById('bB');
-  bL.className = bD.className = bB.className = 'pick-btn';
-  fL.className = 'frame light';
-  fD.className = 'frame dark';
-  if (w === 'light') {
-    fL.classList.add('visible'); bL.classList.add('sel-light');
-  } else if (w === 'dark') {
-    fD.classList.add('visible'); bD.classList.add('sel-dark');
-  } else {
-    fL.classList.add('visible'); fD.classList.add('visible'); bB.classList.add('sel-both');
-  }
-}
-function openM(t) {
-  document.getElementById('m'+t).classList.add('open');
+function openModal() {
+  document.getElementById('modal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
-function closeM(t) {
-  document.getElementById('m'+t).classList.remove('open');
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
   document.body.style.overflow = '';
 }
-show(window.innerWidth > 700 ? 'both' : 'light');
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
 </script>
 
 </body>
