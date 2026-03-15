@@ -4,767 +4,756 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="light">
-<meta name="supported-color-schemes" content="light">
-<title>OMGItsWicks</title>
+<meta name="color-scheme" content="light only">
+<title>OMGItsWicks — Pick Your Vibe</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --ink:    #0E0E0E;
-    --paper:  #F0EBE3;
-    --mid:    #8A8178;
-    --rule:   #D4CEC6;
-    --red:    #C0321C;
-    --red-dim: rgba(192,50,28,0.1);
-    --teal:   #0E7C6B;
-    --teal-lt: rgba(14,124,107,0.12);
-    --teal-mid: rgba(14,124,107,0.35);
-  }
-
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html {
-scroll-behavior: smooth;
-color-scheme: light;
-}
-
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { background: #1a1a1a; }
 body {
-font-family: ‘Barlow Condensed’, sans-serif;
-background: var(–paper);
-color: var(–ink);
--webkit-font-smoothing: antialiased;
-overflow-x: hidden;
--webkit-text-size-adjust: 100%;
+  font-family: 'Barlow Condensed', Arial Narrow, sans-serif;
+  background: #1a1a1a;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
-/* ── NAV ── */
-nav {
+/* PICKER BAR */
+.picker {
 position: fixed;
 top: 0; left: 0; right: 0;
-z-index: 100;
-background: var(–ink);
+z-index: 200;
+background: #111;
+border-bottom: 2px solid #C0321C;
 display: flex;
 align-items: center;
 justify-content: space-between;
-padding: 0 24px;
+padding: 0 20px;
 height: 48px;
-border-bottom: 2px solid var(–teal);
+gap: 12px;
 }
-
-.nav-logo {
-font-weight: 900;
-font-size: 1.1rem;
-letter-spacing: 0.06em;
-text-transform: uppercase;
-color: var(–paper);
-}
-
-.nav-logo .accent { color: var(–teal); }
-
-.nav-links { display: flex; gap: 24px; align-items: center; }
-
-.nav-link {
-font-size: 0.72rem;
+.picker-label {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 0.7rem;
 font-weight: 700;
-letter-spacing: 0.16em;
+letter-spacing: 0.2em;
 text-transform: uppercase;
 color: #666;
-text-decoration: none;
-transition: color 0.2s;
+white-space: nowrap;
+flex-shrink: 0;
 }
-.nav-link:hover { color: var(–teal); }
-
-.nav-book {
+.picker-btns {
+display: flex;
+gap: 8px;
+flex-shrink: 0;
+}
+.pick-btn {
 font-family: ‘Barlow Condensed’, sans-serif;
 font-size: 0.72rem;
 font-weight: 700;
-letter-spacing: 0.16em;
+letter-spacing: 0.14em;
 text-transform: uppercase;
-color: var(–ink);
-background: var(–teal);
-color: var(–paper);
-padding: 6px 16px;
+padding: 6px 14px;
+border: 1px solid #444;
+background: transparent;
+color: #888;
+cursor: pointer;
+}
+.pick-btn.active-light { background: #F0EBE3; color: #0E0E0E; border-color: #F0EBE3; }
+.pick-btn.active-dark  { background: #C0321C; color: #F0EBE3; border-color: #C0321C; }
+
+/* FRAMES */
+.frames {
+display: flex;
+gap: 2px;
+padding-top: 48px;
+}
+
+/* on mobile show one at a time */
+.frame {
+flex: 1;
+min-width: 0;
+}
+
+@media (max-width: 700px) {
+.frames { gap: 0; }
+.frame { display: none; }
+.frame.visible { display: block; }
+}
+
+/* SHARED SITE STYLES — scoped by theme class */
+
+/* LIGHT */
+.light {
+background: #F0EBE3;
+color: #0E0E0E;
+}
+.light .s-nav {
+background: #0E0E0E;
+border-bottom: 2px solid #0E7C6B;
+}
+.light .s-nav-logo { color: #F0EBE3; }
+.light .s-nav-logo .teal { color: #0E7C6B; }
+.light .s-nav-book { background: #0E7C6B; color: #F0EBE3; }
+.light .s-hero { background: #F0EBE3; border-bottom: 2px solid #0E0E0E; }
+.light .s-overline { color: #0E7C6B; }
+.light .s-overline::before { background: #0E7C6B; }
+.light .s-name { color: #0E0E0E; }
+.light .s-red { color: #C0321C; }
+.light .s-sub-label { color: #8A8178; }
+.light .s-sub-value { color: #0E0E0E; }
+.light .s-sub-rule { border-top: 1px solid #D4CEC6; }
+.light .s-ticker { background: #C0321C; }
+.light .s-ticker-sep { color: rgba(240,235,227,0.4); }
+.light .s-social-row { background: #F0EBE3; border-bottom: 1px solid #D4CEC6; }
+.light .s-social-link { background: #F0EBE3; color: #8A8178; border-right: 1px solid #D4CEC6; }
+.light .s-social-count { color: #0E0E0E; }
+.light .s-container { background: #F0EBE3; }
+.light .s-section { border-bottom: 1px solid #D4CEC6; }
+.light .s-section-label { color: #0E7C6B; }
+.light .s-section-label::after { background: #D4CEC6; }
+.light .s-section-title { color: #0E0E0E; }
+.light .s-about { color: #2A2520; }
+.light .s-pull { background: rgba(14,124,107,0.09); border-left: 3px solid #0E7C6B; }
+.light .s-pull p { color: #0E7C6B; }
+.light .s-pull-attr { color: #8A8178; }
+.light .s-show-day { color: #0E0E0E; }
+.light .s-show-month { color: #0E7C6B; }
+.light .s-show-venue { color: #0E0E0E; }
+.light .s-show-meta { color: #8A8178; }
+.light .s-show-rule { border-bottom: 1px solid #D4CEC6; }
+.light .s-badge-on { color: #0E7C6B; }
+.light .s-badge-sold { color: #8A8178; }
+.light .s-grid { background: #D4CEC6; border: 1px solid #D4CEC6; }
+.light .s-card { background: #F0EBE3; color: #0E0E0E; }
+.light .s-card-desc { color: #8A8178; }
+.light .s-modal-sheet { background: #F0EBE3; border-top: 3px solid #C0321C; }
+.light .s-modal-opts { background: #D4CEC6; border: 1px solid #D4CEC6; }
+.light .s-modal-opt { background: #F0EBE3; color: #0E0E0E; }
+.light .s-modal-title { color: #0E0E0E; }
+.light .s-modal-sub { color: #8A8178; }
+.light .s-modal-opt-label { color: #0E0E0E; }
+.light .s-modal-opt-detail { color: #8A8178; }
+.light .s-modal-cancel { border: 1px solid #D4CEC6; color: #8A8178; }
+.light .s-footer { background: #F0EBE3; border-top: 2px solid #0E0E0E; }
+.light .s-footer-name { color: #0E0E0E; }
+.light .s-footer-note { color: #8A8178; }
+
+/* DARK */
+.dark {
+background: #0E0E0E;
+color: #F0EBE3;
+}
+.dark .s-nav { background: #0E0E0E; border-bottom: 2px solid #C0321C; }
+.dark .s-nav-logo { color: #F0EBE3; }
+.dark .s-nav-logo .teal { color: #0E7C6B; }
+.dark .s-nav-book { background: #C0321C; color: #F0EBE3; }
+.dark .s-hero { background: #0E0E0E; border-bottom: 2px solid #222; }
+.dark .s-overline { color: #C0321C; }
+.dark .s-overline::before { background: #C0321C; }
+.dark .s-name { color: #F0EBE3; }
+.dark .s-red { color: #C0321C; }
+.dark .s-sub-label { color: #666; }
+.dark .s-sub-value { color: #CCCAC6; }
+.dark .s-sub-rule { border-top: 1px solid #222; }
+.dark .s-ticker { background: #0E7C6B; }
+.dark .s-ticker-sep { color: rgba(240,235,227,0.3); }
+.dark .s-social-row { background: #0E0E0E; border-bottom: 1px solid #222; }
+.dark .s-social-link { background: #0E0E0E; color: #666; border-right: 1px solid #222; }
+.dark .s-social-count { color: #F0EBE3; }
+.dark .s-container { background: #0E0E0E; }
+.dark .s-section { border-bottom: 1px solid #222; }
+.dark .s-section-label { color: #0E7C6B; }
+.dark .s-section-label::after { background: #222; }
+.dark .s-section-title { color: #F0EBE3; }
+.dark .s-about { color: #BCBAB6; }
+.dark .s-about strong { color: #F0EBE3; }
+.dark .s-pull { background: rgba(192,50,28,0.1); border-left: 3px solid #C0321C; }
+.dark .s-pull p { color: #C0321C; }
+.dark .s-pull-attr { color: #666; }
+.dark .s-show-day { color: #F0EBE3; }
+.dark .s-show-month { color: #C0321C; }
+.dark .s-show-venue { color: #F0EBE3; }
+.dark .s-show-meta { color: #666; }
+.dark .s-show-rule { border-bottom: 1px solid #222; }
+.dark .s-badge-on { color: #0E7C6B; }
+.dark .s-badge-sold { color: #555; }
+.dark .s-grid { background: #1a1a1a; border: 1px solid #1a1a1a; }
+.dark .s-card { background: #141414; color: #F0EBE3; }
+.dark .s-card-desc { color: #666; }
+.dark .s-modal-sheet { background: #141414; border-top: 3px solid #C0321C; }
+.dark .s-modal-opts { background: #1a1a1a; border: 1px solid #1a1a1a; }
+.dark .s-modal-opt { background: #141414; color: #F0EBE3; }
+.dark .s-modal-title { color: #F0EBE3; }
+.dark .s-modal-sub { color: #666; }
+.dark .s-modal-opt-label { color: #F0EBE3; }
+.dark .s-modal-opt-detail { color: #666; }
+.dark .s-modal-cancel { border: 1px solid #333; color: #666; }
+.dark .s-footer { background: #0E0E0E; border-top: 2px solid #222; }
+.dark .s-footer-name { color: #F0EBE3; }
+.dark .s-footer-note { color: #555; }
+
+/* SHARED SITE COMPONENT STYLES */
+.s-nav {
+position: sticky;
+top: 0;
+z-index: 10;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 0 16px;
+height: 44px;
+}
+.s-nav-logo {
+font-weight: 900;
+font-size: 0.95rem;
+letter-spacing: 0.06em;
+text-transform: uppercase;
+white-space: nowrap;
+}
+.s-nav-book {
+font-size: 0.65rem;
+font-weight: 700;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+padding: 5px 12px;
 border: none;
 cursor: pointer;
-transition: background 0.2s;
-}
-.nav-book:hover { background: var(–red); }
-
-/* ── HERO ── */
-.hero {
-padding-top: 48px;
-min-height: 100svh;
-display: grid;
-grid-template-rows: 1fr auto;
-border-bottom: 2px solid var(–ink);
-position: relative;
+font-family: ‘Barlow Condensed’, sans-serif;
+white-space: nowrap;
+text-decoration: none;
+display: inline-block;
 }
 
-/* Diagonal teal accent block */
-.hero::before {
-content: ‘’;
-position: absolute;
-top: 48px;
-right: 0;
-width: 38%;
-bottom: 40px;
-background: var(–teal);
-clip-path: polygon(12% 0, 100% 0, 100% 100%, 0% 100%);
-opacity: 0.07;
-pointer-events: none;
+.s-hero {
+min-height: 90vh;
+display: flex;
+flex-direction: column;
 }
-
-.hero-main {
+.s-hero-main {
+flex: 1;
 display: flex;
 flex-direction: column;
 justify-content: center;
-padding: 48px 24px 32px;
-position: relative;
-z-index: 1;
+padding: 32px 16px 24px;
 }
-
-.hero-overline {
-font-size: 0.72rem;
+.s-overline {
+font-size: 0.65rem;
 font-weight: 600;
 letter-spacing: 0.22em;
 text-transform: uppercase;
-color: var(–teal);
-margin-bottom: 14px;
+margin-bottom: 12px;
 display: flex;
 align-items: center;
-gap: 10px;
+gap: 8px;
 }
-.hero-overline::before {
+.s-overline::before {
 content: ‘’;
 display: block;
-width: 28px;
+width: 22px;
 height: 2px;
-background: var(–teal);
+flex-shrink: 0;
 }
-
-.hero-name {
-font-size: clamp(5rem, 21vw, 13rem);
+.s-name {
+font-size: clamp(3.8rem, 18vw, 10rem);
 font-weight: 900;
 line-height: 0.88;
 letter-spacing: -0.01em;
 text-transform: uppercase;
 }
-.hero-name .italic {
-font-style: italic;
-color: var(–red);
+.s-red-italic { font-style: italic; display: block; }
+
+/* PHOTO BLOCK */
+.s-photo {
+width: 100%;
+height: 220px;
+object-fit: cover;
+object-position: top center;
+display: block;
+margin: 20px 0 0;
+}
+.s-photo-placeholder {
+width: 100%;
+height: 220px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 0.65rem;
+font-weight: 700;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+opacity: 0.3;
+margin: 20px 0 0;
 }
 
-.hero-sub {
-margin-top: 28px;
-border-top: 1px solid var(–rule);
-padding-top: 20px;
+.s-sub {
+padding: 16px 16px 0;
 display: grid;
 grid-template-columns: 1fr 1fr;
-gap: 16px;
-max-width: 560px;
+gap: 12px;
 }
-
-.hero-sub-label {
-font-size: 0.6rem;
+.s-sub-label {
+font-size: 0.55rem;
 font-weight: 700;
 letter-spacing: 0.2em;
 text-transform: uppercase;
-color: var(–mid);
-margin-bottom: 5px;
+margin-bottom: 4px;
 }
-
-.hero-sub-value {
-font-size: 1.05rem;
+.s-sub-value {
+font-size: 0.92rem;
 font-weight: 300;
-line-height: 1.5;
-color: var(–ink);
+line-height: 1.45;
 }
+.s-sub-rule { padding-top: 14px; }
 
-/* ── TICKER ── */
-.ticker {
-background: var(–red);
+.s-ticker {
 overflow: hidden;
-height: 38px;
+height: 34px;
 display: flex;
 align-items: center;
-border-top: 1px solid rgba(0,0,0,0.15);
-position: relative;
-z-index: 1;
+margin-top: 20px;
+flex-shrink: 0;
 }
-
-.ticker-track {
+.s-ticker-track {
 display: flex;
 animation: tick 28s linear infinite;
 white-space: nowrap;
 }
-
-.ticker-item {
-font-size: 0.72rem;
+.s-ticker-item {
+font-size: 0.65rem;
 font-weight: 700;
 letter-spacing: 0.18em;
 text-transform: uppercase;
-padding: 0 20px;
+padding: 0 16px;
 flex-shrink: 0;
-color: var(–paper);
+color: #F0EBE3;
 }
-
-.ticker-sep {
-color: rgba(255,255,255,0.4);
-flex-shrink: 0;
-padding: 0 4px;
-font-size: 0.72rem;
-font-weight: 700;
-}
-
+.s-ticker-sep { font-size: 0.65rem; font-weight: 700; flex-shrink: 0; }
 @keyframes tick {
 from { transform: translateX(0); }
 to { transform: translateX(-50%); }
 }
 
-/* ── SOCIAL ROW ── */
-.social-row {
-display: flex;
-border-bottom: 1px solid var(–rule);
-}
-
-.social-link {
+.s-social-row { display: flex; }
+.s-social-link {
 flex: 1;
-padding: 16px 10px;
+padding: 12px 6px;
 text-align: center;
 text-decoration: none;
-color: var(–mid);
-font-size: 0.6rem;
+font-size: 0.55rem;
 font-weight: 700;
-letter-spacing: 0.12em;
+letter-spacing: 0.1em;
 text-transform: uppercase;
-border-right: 1px solid var(–rule);
-transition: background 0.15s, color 0.15s;
 }
-.social-link:last-child { border-right: none; }
-.social-link:hover { background: var(–teal); color: var(–paper); }
-.social-link:hover .social-count { color: var(–paper); }
-
-.social-count {
+.s-social-count {
 display: block;
-font-size: 1.2rem;
+font-size: 1rem;
 font-weight: 900;
-color: var(–ink);
 line-height: 1;
-margin-bottom: 4px;
-transition: color 0.15s;
+margin-bottom: 3px;
 }
 
-/* ── LAYOUT ── */
-.container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
-
-.section {
-border-bottom: 1px solid var(–rule);
-padding: 56px 0;
-}
-
-.section-label {
-font-size: 0.63rem;
+.s-container { padding: 0 16px; }
+.s-section { padding: 40px 0; }
+.s-section-label {
+font-size: 0.58rem;
 font-weight: 700;
 letter-spacing: 0.22em;
 text-transform: uppercase;
-color: var(–teal);
-margin-bottom: 20px;
+margin-bottom: 16px;
 display: flex;
 align-items: center;
-gap: 10px;
+gap: 8px;
 }
-.section-label::after {
-content: ‘’;
-flex: 1;
-height: 1px;
-background: var(–rule);
-}
-
-.section-title {
-font-size: clamp(2.2rem, 7vw, 3.6rem);
+.s-section-label::after { content: ‘’; flex: 1; height: 1px; }
+.s-section-title {
+font-size: clamp(1.8rem, 5.5vw, 3rem);
 font-weight: 900;
 line-height: 0.92;
 text-transform: uppercase;
 letter-spacing: -0.01em;
-margin-bottom: 28px;
+margin-bottom: 20px;
 }
 
-/* ── ABOUT ── */
-.about-text {
-font-size: 1.15rem;
+.s-about {
+font-size: 1rem;
 font-weight: 300;
-line-height: 1.75;
-color: #2A2520;
+line-height: 1.7;
 }
-.about-text p + p { margin-top: 18px; }
-.about-text strong { font-weight: 700; color: var(–ink); }
+.s-about p + p { margin-top: 14px; }
+.s-about strong { font-weight: 700; }
 
-.pull-quote {
-margin: 36px 0;
-padding: 20px 24px;
-background: var(–teal-lt);
-border-left: 3px solid var(–teal);
-}
-.pull-quote p {
-font-size: 1.9rem;
-font-weight: 700;
-font-style: italic;
-line-height: 1.2;
-color: var(–teal);
-}
-.pull-quote .attr {
-margin-top: 8px;
-font-size: 0.72rem;
-font-weight: 600;
-letter-spacing: 0.1em;
-text-transform: uppercase;
-color: var(–mid);
-}
+.s-pull { margin: 24px 0; padding: 16px 18px; }
+.s-pull p { font-size: 1.5rem; font-weight: 700; font-style: italic; line-height: 1.2; }
+.s-pull-attr { margin-top: 6px; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
 
-/* ── SHOWS ── */
-.show-item {
+.s-show {
 display: grid;
-grid-template-columns: 52px 1fr auto;
-gap: 16px 18px;
+grid-template-columns: 44px 1fr auto;
+gap: 10px 12px;
 align-items: center;
-padding: 15px 0;
-border-bottom: 1px solid var(–rule);
+padding: 12px 0;
 text-decoration: none;
-color: var(–ink);
-transition: padding-left 0.15s;
+color: inherit;
 }
-.show-item:last-child { border-bottom: none; }
-.show-item:hover { padding-left: 6px; }
-.show-item:hover .show-venue { color: var(–red); }
+.s-show-day { font-size: 1.7rem; font-weight: 900; line-height: 1; text-align: right; }
+.s-show-month { font-size: 0.52rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-align: right; margin-top: 1px; }
+.s-show-venue { font-size: 0.88rem; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; }
+.s-show-meta { font-size: 0.8rem; font-weight: 300; margin-top: 2px; }
+.s-badge { font-size: 0.55rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 8px; border: 1px solid currentColor; white-space: nowrap; }
 
-.show-day {
-font-size: 2rem;
-font-weight: 900;
-line-height: 1;
-text-align: right;
-color: var(–ink);
-}
-.show-month {
-font-size: 0.58rem;
-font-weight: 700;
-letter-spacing: 0.1em;
-text-transform: uppercase;
-color: var(–teal);
-text-align: right;
-margin-top: 2px;
-}
+.s-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: 20px; }
+.s-card { padding: 18px 14px; cursor: pointer; display: block; text-decoration: none; border-top: 3px solid transparent; }
+.s-card-title { font-size: 0.95rem; font-weight: 900; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 4px; }
+.s-card-desc { font-size: 0.8rem; font-weight: 300; line-height: 1.35; }
 
-.show-venue {
-font-size: 0.95rem;
-font-weight: 700;
-letter-spacing: 0.02em;
-text-transform: uppercase;
-transition: color 0.15s;
-}
-.show-meta {
-font-size: 0.92rem;
-font-weight: 300;
-color: var(–mid);
-margin-top: 3px;
-}
+.s-footer { padding: 20px 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; }
+.s-footer-name { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+.s-footer-note { font-size: 0.65rem; font-weight: 300; }
 
-.show-badge {
-font-size: 0.6rem;
-font-weight: 700;
-letter-spacing: 0.1em;
-text-transform: uppercase;
-padding: 4px 10px;
-border: 1px solid currentColor;
-white-space: nowrap;
-}
-.badge-on { color: var(–teal); }
-.badge-sold { color: var(–mid); }
-
-/* ── CONTACT GRID ── */
-.contact-grid {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 1px;
-background: var(–rule);
-border: 1px solid var(–rule);
-margin-top: 28px;
-}
-
-.contact-card {
-background: var(–paper);
-padding: 22px 18px;
-cursor: pointer;
-text-decoration: none;
-color: var(–ink);
-transition: background 0.15s, color 0.15s;
-display: block;
-border-top: 3px solid transparent;
-transition: all 0.15s;
-}
-.contact-card:nth-child(1):hover { background: var(–red); color: var(–paper); border-top-color: var(–red); }
-.contact-card:nth-child(2):hover { background: var(–teal); color: var(–paper); border-top-color: var(–teal); }
-.contact-card:nth-child(3):hover { background: var(–teal); color: var(–paper); border-top-color: var(–teal); }
-.contact-card:nth-child(4):hover { background: var(–ink); color: var(–paper); border-top-color: var(–ink); }
-.contact-card:hover .contact-card-desc { color: rgba(255,255,255,0.6); }
-
-.contact-card-title {
-font-size: 1.05rem;
-font-weight: 900;
-letter-spacing: 0.04em;
-text-transform: uppercase;
-margin-bottom: 5px;
-}
-.contact-card-desc {
-font-size: 0.9rem;
-font-weight: 300;
-color: var(–mid);
-line-height: 1.4;
-transition: color 0.15s;
-}
-
-/* ── FOOTER ── */
-footer {
-padding: 28px 24px;
-display: flex;
-align-items: center;
-justify-content: space-between;
-flex-wrap: wrap;
-gap: 8px;
-border-top: 2px solid var(–ink);
-}
-
-.footer-name {
-font-size: 0.72rem;
-font-weight: 700;
-letter-spacing: 0.14em;
-text-transform: uppercase;
-}
-.footer-name .accent { color: var(–teal); }
-
-.footer-note {
-font-size: 0.72rem;
-font-weight: 300;
-color: var(–mid);
-}
-
-/* ── MODAL ── */
-.modal-bg {
+/* MODAL */
+.s-modal-bg {
 display: none;
 position: fixed;
 inset: 0;
-background: rgba(14,14,14,0.65);
+background: rgba(14,14,14,0.7);
 z-index: 999;
 align-items: flex-end;
 justify-content: center;
 }
-.modal-bg.open { display: flex; }
-
-.modal-sheet {
-background: var(–paper);
-border-top: 3px solid var(–teal);
-padding: 32px 24px 52px;
+.s-modal-bg.open { display: flex; }
+.s-modal-sheet {
+padding: 28px 20px 48px;
 width: 100%;
 max-width: 520px;
 animation: sheetUp 0.28s cubic-bezier(0.22,1,0.36,1);
 }
-@keyframes sheetUp {
-from { transform: translateY(100%); }
-to { transform: translateY(0); }
-}
+@keyframes sheetUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+.s-modal-title { font-size: 2rem; font-weight: 900; text-transform: uppercase; margin-bottom: 4px; }
+.s-modal-sub { font-size: 0.85rem; font-weight: 300; margin-bottom: 18px; }
+.s-modal-opts { display: flex; flex-direction: column; gap: 1px; }
+.s-modal-opt { padding: 14px 16px; text-decoration: none; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px; border-left: 3px solid transparent; }
+.s-modal-opt-label { font-size: 0.95rem; font-weight: 900; letter-spacing: 0.04em; text-transform: uppercase; }
+.s-modal-opt-detail { font-size: 0.75rem; font-weight: 300; margin-top: 2px; }
+.s-modal-cancel { width: 100%; margin-top: 8px; padding: 12px; background: transparent; font-family: ‘Barlow Condensed’, sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; }
 
-.modal-title {
-font-size: 2.2rem;
-font-weight: 900;
-text-transform: uppercase;
-letter-spacing: 0.02em;
-margin-bottom: 4px;
-}
-.modal-sub {
-font-size: 0.85rem;
-font-weight: 300;
-color: var(–mid);
-margin-bottom: 20px;
-}
-
-.modal-options {
-display: flex;
-flex-direction: column;
-gap: 1px;
-background: var(–rule);
-border: 1px solid var(–rule);
-}
-
-.modal-option {
-background: var(–paper);
-padding: 16px 18px;
-text-decoration: none;
-color: var(–ink);
-display: grid;
-grid-template-columns: 1fr auto;
-align-items: center;
-gap: 12px;
-transition: background 0.15s, color 0.15s;
-border-left: 3px solid transparent;
-}
-.modal-option:nth-child(1):hover { background: var(–red-dim); border-left-color: var(–red); }
-.modal-option:nth-child(2):hover { background: var(–teal-lt); border-left-color: var(–teal); }
-.modal-option:nth-child(3):hover { background: var(–teal-lt); border-left-color: var(–teal); }
-.modal-option:nth-child(4):hover { background: var(–teal-lt); border-left-color: var(–teal); }
-.modal-option:nth-child(5):hover { background: rgba(14,14,14,0.05); border-left-color: var(–ink); }
-
-.modal-opt-label {
-font-size: 1rem;
-font-weight: 900;
-letter-spacing: 0.04em;
-text-transform: uppercase;
-}
-.modal-opt-detail {
-font-size: 0.78rem;
-font-weight: 300;
-color: var(–mid);
-margin-top: 2px;
-}
-
-.modal-arrow { font-size: 1rem; color: var(–mid); }
-
-.modal-cancel {
-width: 100%;
-margin-top: 10px;
-padding: 13px;
-background: transparent;
-border: 1px solid var(–rule);
+/* LABELS */
+.version-tag {
+position: sticky;
+top: 44px;
+z-index: 9;
+text-align: center;
 font-family: ‘Barlow Condensed’, sans-serif;
-font-size: 0.78rem;
+font-size: 0.6rem;
 font-weight: 700;
-letter-spacing: 0.14em;
+letter-spacing: 0.2em;
 text-transform: uppercase;
-color: var(–mid);
-cursor: pointer;
-transition: border-color 0.2s, color 0.2s;
+padding: 6px;
 }
-.modal-cancel:hover { border-color: var(–ink); color: var(–ink); }
-
-@media (max-width: 480px) {
-.contact-grid { grid-template-columns: 1fr; }
-.hero-sub { grid-template-columns: 1fr; }
-.social-row { flex-wrap: wrap; }
-.social-link { min-width: 50%; border-bottom: 1px solid var(–rule); }
-}
+.light .version-tag { background: #0E7C6B; color: #F0EBE3; }
+.dark  .version-tag { background: #C0321C; color: #F0EBE3; }
 </style>
 
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo">OMG<span class="accent">Its</span>Wicks</div>
-  <div class="nav-links">
-    <a href="#shows" class="nav-link">Shows</a>
-    <a href="#contact" class="nav-link">Contact</a>
-    <button class="nav-book" onclick="openModal()">Book Wicks</button>
-  </div>
-</nav>
+<!-- PICKER -->
 
-<div class="hero">
-  <div class="hero-main">
-    <div class="hero-overline">Fort Myers, Florida &mdash; Comedian</div>
-    <h1 class="hero-name">OMG<br><span class="italic">Its</span><br>Wicks</h1>
-    <div class="hero-sub">
+<div class="picker">
+  <span class="picker-label">Pick your vibe</span>
+  <div class="picker-btns">
+    <button class="pick-btn active-light" id="btnLight" onclick="showFrame('light')">Light</button>
+    <button class="pick-btn" id="btnDark"  onclick="showFrame('dark')">Dark</button>
+    <button class="pick-btn" id="btnBoth"  onclick="showFrame('both')">Both</button>
+  </div>
+</div>
+
+<div class="frames" id="frames">
+
+<!-- ═══════════════ LIGHT FRAME ═══════════════ -->
+
+<div class="frame light visible" id="frameLight">
+  <div class="version-tag">Option A &mdash; Light</div>
+  <nav class="s-nav">
+    <div class="s-nav-logo">OMG<span class="teal">Its</span>Wicks</div>
+    <a href="#" class="s-nav-book" onclick="openModal('light');return false;">Book Wicks</a>
+  </nav>
+
+  <div class="s-hero">
+    <div class="s-hero-main">
+      <div class="s-overline">Fort Myers, Florida &mdash; Comedian</div>
+      <h1 class="s-name">OMG<span class="s-red-italic s-red">Its</span>Wicks</h1>
+    </div>
+    <img
+      class="s-photo"
+      src="https://omgitswicks.com/images/1200/23073321/image21-J2PsYOkyYqk06zr2Ua78mQ.jpeg"
+      alt="OMGItsWicks"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+    >
+    <div class="s-photo-placeholder" style="display:none;background:rgba(14,124,107,0.08);">Photo loads on live site</div>
+    <div class="s-sub s-sub-rule">
       <div>
-        <div class="hero-sub-label">Known for</div>
-        <div class="hero-sub-value">Florida observations. Clean comedy. Free meet &amp; greet after every show.</div>
+        <div class="s-sub-label">Known for</div>
+        <div class="s-sub-value">Florida observations. Clean comedy. Free meet &amp; greet every show.</div>
       </div>
       <div>
-        <div class="hero-sub-label">Next show</div>
-        <div class="hero-sub-value">April 23 &mdash; McCurdy's Comedy Club, Sarasota</div>
+        <div class="s-sub-label">Next show</div>
+        <div class="s-sub-value">Apr 23 &mdash; McCurdy's, Sarasota</div>
+      </div>
+    </div>
+    <div class="s-ticker">
+      <div class="s-ticker-track">
+        <span class="s-ticker-item">OMGItsWicks</span><span class="s-ticker-sep">&nbsp;/&nbsp;</span>
+        <span class="s-ticker-item">Family-friendly comedy</span><span class="s-ticker-sep">&nbsp;/&nbsp;</span>
+        <span class="s-ticker-item">Fort Myers, FL</span><span class="s-ticker-sep">&nbsp;/&nbsp;</span>
+        <span class="s-ticker-item">1.7M on TikTok</span><span class="s-ticker-sep">&nbsp;/&nbsp;</span>
+        <span class="s-ticker-item">Free meet &amp; greet every night</span><span class="s-ticker-sep">&nbsp;/&nbsp;</span>
+        <span class="s-ticker-item">Book Wicks</span><span class="s-ticker-sep">&nbsp;/&nbsp;</span>
+        <span class="s-ticker-item">OMGItsWicks</span><span class="s-ticker-sep">&nbsp;/&nbsp;</span>
+        <span class="s-ticker-item">Family-friendly comedy</span><span class="s-ticker-sep">&nbsp;/&nbsp;</span>
+        <span class="s-ticker-item">Fort Myers, FL</span><span class="s-ticker-sep">&nbsp;/&nbsp;</span>
+        <span class="s-ticker-item">1.7M on TikTok</span><span class="s-ticker-sep">&nbsp;/&nbsp;</span>
+        <span class="s-ticker-item">Free meet &amp; greet every night</span><span class="s-ticker-sep">&nbsp;/&nbsp;</span>
+        <span class="s-ticker-item">Book Wicks</span><span class="s-ticker-sep">&nbsp;/&nbsp;</span>
       </div>
     </div>
   </div>
 
-  <div class="ticker">
-    <div class="ticker-track">
-      <span class="ticker-item">OMGItsWicks</span><span class="ticker-sep">/</span>
-      <span class="ticker-item">Family-friendly comedy</span><span class="ticker-sep">/</span>
-      <span class="ticker-item">Fort Myers, FL</span><span class="ticker-sep">/</span>
-      <span class="ticker-item">1.7M on TikTok</span><span class="ticker-sep">/</span>
-      <span class="ticker-item">Sold-out shows statewide</span><span class="ticker-sep">/</span>
-      <span class="ticker-item">Free meet &amp; greet every night</span><span class="ticker-sep">/</span>
-      <span class="ticker-item">Book Wicks</span><span class="ticker-sep">/</span>
-      <span class="ticker-item">OMGItsWicks</span><span class="ticker-sep">/</span>
-      <span class="ticker-item">Family-friendly comedy</span><span class="ticker-sep">/</span>
-      <span class="ticker-item">Fort Myers, FL</span><span class="ticker-sep">/</span>
-      <span class="ticker-item">1.7M on TikTok</span><span class="ticker-sep">/</span>
-      <span class="ticker-item">Sold-out shows statewide</span><span class="ticker-sep">/</span>
-      <span class="ticker-item">Free meet &amp; greet every night</span><span class="ticker-sep">/</span>
-      <span class="ticker-item">Book Wicks</span><span class="ticker-sep">/</span>
+  <div class="s-social-row">
+    <a href="https://tiktok.com/@omgitswicks" target="_blank" class="s-social-link"><span class="s-social-count">1.7M</span>TikTok</a>
+    <a href="https://instagram.com/omgitswicks" target="_blank" class="s-social-link"><span class="s-social-count">553K</span>Instagram</a>
+    <a href="https://youtube.com/@omgitswicks" target="_blank" class="s-social-link"><span class="s-social-count">YouTube</span>@omgitswicks</a>
+    <a href="https://facebook.com/omgitswicks" target="_blank" class="s-social-link"><span class="s-social-count">685K</span>Facebook</a>
+  </div>
+
+  <div class="s-container">
+    <div class="s-section">
+      <div class="s-section-label">About</div>
+      <div class="s-about">
+        <p>Josh Robinson&mdash;better known as OMGItsWicks&mdash;is a Fort Myers comedian who built one of Florida's largest social media followings by doing one thing well: telling the truth about what it's actually like to live here.</p>
+        <div class="s-pull">
+          <p>"Is it wet? Then it has gators."</p>
+          <div class="s-pull-attr">&mdash; on the Florida pond question</div>
+        </div>
+        <p>His shows are <strong>family-friendly</strong>. No shock value, no cheap shots. Every show ends with a free meet and greet&mdash;no upcharge, no velvet rope.</p>
+      </div>
+    </div>
+
+```
+<div class="s-section">
+  <div class="s-section-label">Upcoming shows</div>
+  <h2 class="s-section-title">On the road</h2>
+  <a href="https://www.etix.com/ticket/p/88075635/" target="_blank" class="s-show s-show-rule"><div><div class="s-show-day">23</div><div class="s-show-month">Apr</div></div><div><div class="s-show-venue">McCurdy's Comedy Club</div><div class="s-show-meta">Sarasota, FL &mdash; 7:00 PM</div></div><span class="s-badge s-badge-on">Tickets</span></a>
+  <a href="https://www.etix.com/ticket/p/53545233" target="_blank" class="s-show s-show-rule"><div><div class="s-show-day">24</div><div class="s-show-month">Apr</div></div><div><div class="s-show-venue">McCurdy's Comedy Club</div><div class="s-show-meta">Sarasota, FL &mdash; 6:30 &amp; 8:50 PM</div></div><span class="s-badge s-badge-sold">Sold out</span></a>
+  <a href="https://www.etix.com/ticket/p/31167106" target="_blank" class="s-show s-show-rule"><div><div class="s-show-day">25</div><div class="s-show-month">Apr</div></div><div><div class="s-show-venue">McCurdy's Comedy Club</div><div class="s-show-meta">Sarasota, FL &mdash; 6:30 &amp; 8:50 PM</div></div><span class="s-badge s-badge-sold">Sold out</span></a>
+  <a href="https://www.ticketmaster.com/omgitswicks-boca-raton-florida-05-02-2026/event/0D00635CF967744F" target="_blank" class="s-show s-show-rule"><div><div class="s-show-day">2</div><div class="s-show-month">May</div></div><div><div class="s-show-venue">The Studio at Mizner Park</div><div class="s-show-meta">Boca Raton, FL &mdash; 6:00 &amp; 8:30 PM</div></div><span class="s-badge s-badge-on">Tickets</span></a>
+  <a href="https://visanientertainmentinc.thundertix.com/events/259330" target="_blank" class="s-show s-show-rule"><div><div class="s-show-day">28</div><div class="s-show-month">May</div></div><div><div class="s-show-venue">Visani Comedy Theatre</div><div class="s-show-meta">Port Charlotte, FL &mdash; Multiple shows</div></div><span class="s-badge s-badge-sold">Sold out</span></a>
+  <a href="https://0sculturalparktheatreorg.thundertix.com/events/256085" target="_blank" class="s-show s-show-rule"><div><div class="s-show-day">12</div><div class="s-show-month">Jun</div></div><div><div class="s-show-venue">Cultural Park Theatre</div><div class="s-show-meta">Cape Coral, FL &mdash; 6:00 &amp; 8:30 PM</div></div><span class="s-badge s-badge-on">Tickets</span></a>
+  <a href="https://punchup.live/show/0c9d8741-e05d-4824-a54c-9ffd5b4fa22b" target="_blank" class="s-show s-show-rule"><div><div class="s-show-day">10</div><div class="s-show-month">Jul</div></div><div><div class="s-show-venue">Comedy Key West</div><div class="s-show-meta">Key West, FL &mdash; 7:00 &amp; 9:15 PM</div></div><span class="s-badge s-badge-on">Tickets</span></a>
+  <a href="https://secure.sellingticket.com/design22/clients/index.aspx?designID=38435&OrganizationID=64" target="_blank" class="s-show s-show-rule"><div><div class="s-show-day">29</div><div class="s-show-month">Aug</div></div><div><div class="s-show-venue">Polk Theatre</div><div class="s-show-meta">Lakeland, FL &mdash; 7:00 PM</div></div><span class="s-badge s-badge-on">Tickets</span></a>
+  <a href="https://visanientertainmentinc.thundertix.com/performances/3235825/section/58540" target="_blank" class="s-show s-show-rule"><div><div class="s-show-day">11</div><div class="s-show-month">Sep</div></div><div><div class="s-show-venue">Visani Comedy Theatre</div><div class="s-show-meta">Port Charlotte, FL &mdash; 6:30 &amp; 9:30 PM</div></div><span class="s-badge s-badge-on">Tickets</span></a>
+  <a href="https://www.offthehookcomedy.com/shows/357429" target="_blank" class="s-show s-show-rule"><div><div class="s-show-day">5</div><div class="s-show-month">Nov</div></div><div><div class="s-show-venue">Off the Hook Comedy Club</div><div class="s-show-meta">Naples, FL &mdash; Multiple shows</div></div><span class="s-badge s-badge-on">Tickets</span></a>
+</div>
+
+<div class="s-section">
+  <div class="s-section-label">Contact</div>
+  <h2 class="s-section-title">Get in touch</h2>
+  <div class="s-grid">
+    <div class="s-card" onclick="openModal('light')" style="border-top-color:#C0321C;"><div class="s-card-title" style="color:#C0321C;">Book Wicks</div><div class="s-card-desc">Theaters, clubs, corporate, private shows</div></div>
+    <a href="https://omgitswicks.com" target="_blank" class="s-card" style="border-top-color:#0E7C6B;"><div class="s-card-title" style="color:#0E7C6B;">Get merch</div><div class="s-card-desc">Official store</div></a>
+    <div class="s-card" onclick="openModal('light')" style="border-top-color:#0E7C6B;"><div class="s-card-title">Media inquiry</div><div class="s-card-desc">Press, interviews, features</div></div>
+    <div class="s-card" onclick="openModal('light')" style="border-top-color:#0E0E0E;"><div class="s-card-title">Ask a question</div><div class="s-card-desc">Just reach out</div></div>
+  </div>
+</div>
+```
+
+  </div>
+
+  <footer class="s-footer">
+    <div class="s-footer-name">OMG<span class="teal">Its</span>Wicks &mdash; Fort Myers, FL</div>
+    <div class="s-footer-note">Free meet &amp; greet every night.</div>
+  </footer>
+
+  <!-- MODAL LIGHT -->
+
+  <div class="s-modal-bg" id="modalLight" onclick="if(event.target===this)closeModal('light')">
+    <div class="s-modal-sheet light">
+      <div class="s-modal-title">Get in touch</div>
+      <div class="s-modal-sub">Choose how you want to connect.</div>
+      <div class="s-modal-opts light">
+        <a href="sms:17273539673?body=Hi%20Wicks%20team%2C%20booking%20inquiry." class="s-modal-opt light" style="border-left-color:#C0321C;"><div><div class="s-modal-opt-label">Book a show</div><div class="s-modal-opt-detail">Text the team</div></div><span>&rarr;</span></a>
+        <a href="https://omgitswicks.com" target="_blank" class="s-modal-opt light" style="border-left-color:#0E7C6B;"><div><div class="s-modal-opt-label">Get merch</div><div class="s-modal-opt-detail">Official store</div></div><span>&rarr;</span></a>
+        <a href="sms:17273539673?body=Media%20inquiry%20for%20OMGItsWicks." class="s-modal-opt light" style="border-left-color:#0E7C6B;"><div><div class="s-modal-opt-label">Media inquiry</div><div class="s-modal-opt-detail">Press &amp; interviews</div></div><span>&rarr;</span></a>
+        <a href="sms:17273539673?body=Hi%2C%20I%20have%20a%20question." class="s-modal-opt light" style="border-left-color:#0E7C6B;"><div><div class="s-modal-opt-label">Ask a question</div><div class="s-modal-opt-detail">Text directly</div></div><span>&rarr;</span></a>
+        <a href="tel:17273539673" class="s-modal-opt light" style="border-left-color:#0E0E0E;"><div><div class="s-modal-opt-label">Call us</div><div class="s-modal-opt-detail">(727) 353-9673</div></div><span>&rarr;</span></a>
+      </div>
+      <button class="s-modal-cancel light" onclick="closeModal('light')">Cancel</button>
     </div>
   </div>
-</div>
+</div><!-- end light -->
 
-<div class="social-row">
-  <a href="https://tiktok.com/@omgitswicks" target="_blank" class="social-link">
-    <span class="social-count">1.7M</span>TikTok
-  </a>
-  <a href="https://instagram.com/omgitswicks" target="_blank" class="social-link">
-    <span class="social-count">553K</span>Instagram
-  </a>
-  <a href="https://youtube.com/@omgitswicks" target="_blank" class="social-link">
-    <span class="social-count">YouTube</span>@omgitswicks
-  </a>
-  <a href="https://facebook.com/omgitswicks" target="_blank" class="social-link">
-    <span class="social-count">685K</span>Facebook
-  </a>
-</div>
+<!-- ═══════════════ DARK FRAME ═══════════════ -->
 
-<div class="container">
-  <div class="section">
-    <div class="section-label">About</div>
-    <div class="about-text">
-      <p>Josh Robinson&mdash;better known as OMGItsWicks&mdash;is a Fort Myers comedian who built one of Florida's largest social media followings by doing one thing well: telling the truth about what it's actually like to live here.</p>
+<div class="frame dark" id="frameDark">
+  <div class="version-tag">Option B &mdash; Dark</div>
+  <nav class="s-nav">
+    <div class="s-nav-logo">OMG<span class="teal">Its</span>Wicks</div>
+    <a href="#" class="s-nav-book" onclick="openModal('dark');return false;">Book Wicks</a>
+  </nav>
 
-```
-  <div class="pull-quote">
-    <p>"Is it wet? Then it has gators."</p>
-    <div class="attr">&mdash; on the Florida pond question</div>
-  </div>
-
-  <p>He grew up in Southwest Florida and has spent years learning the rest of the state one show at a time&mdash;Panhandle to Keys, small clubs to sold-out theaters. Gators, Publix density, snowbirds, pythons, tourists encountering things Floridians stopped noticing years ago.</p>
-  <p>His shows are <strong>family-friendly</strong>. No shock value, no cheap shots. Every show ends with a free meet and greet&mdash;no upcharge, no velvet rope. He's been doing it from the start.</p>
-</div>
-```
-
-  </div>
-</div>
-
-<div class="container" id="shows">
-  <div class="section">
-    <div class="section-label">Upcoming shows</div>
-    <h2 class="section-title">On the road</h2>
-
-```
-<a href="https://omgitswicks.com" target="_blank" class="show-item">
-  <div><div class="show-day">23</div><div class="show-month">Apr</div></div>
-  <div><div class="show-venue">McCurdy's Comedy Club</div><div class="show-meta">Sarasota, FL &mdash; 7:00 PM</div></div>
-  <span class="show-badge badge-on">Tickets</span>
-</a>
-<a href="https://omgitswicks.com" target="_blank" class="show-item">
-  <div><div class="show-day">24</div><div class="show-month">Apr</div></div>
-  <div><div class="show-venue">McCurdy's Comedy Club</div><div class="show-meta">Sarasota, FL &mdash; 6:30 &amp; 8:50 PM</div></div>
-  <span class="show-badge badge-sold">Sold out</span>
-</a>
-<a href="https://omgitswicks.com" target="_blank" class="show-item">
-  <div><div class="show-day">25</div><div class="show-month">Apr</div></div>
-  <div><div class="show-venue">McCurdy's Comedy Club</div><div class="show-meta">Sarasota, FL &mdash; 6:30 &amp; 8:50 PM</div></div>
-  <span class="show-badge badge-sold">Sold out</span>
-</a>
-<a href="https://omgitswicks.com" target="_blank" class="show-item">
-  <div><div class="show-day">2</div><div class="show-month">May</div></div>
-  <div><div class="show-venue">The Studio at Mizner Park</div><div class="show-meta">Boca Raton, FL &mdash; 6:00 &amp; 8:30 PM</div></div>
-  <span class="show-badge badge-on">Tickets</span>
-</a>
-<a href="https://omgitswicks.com" target="_blank" class="show-item">
-  <div><div class="show-day">28</div><div class="show-month">May</div></div>
-  <div><div class="show-venue">Visani Comedy Theatre</div><div class="show-meta">Port Charlotte, FL &mdash; 6:30 &amp; 9:30 PM</div></div>
-  <span class="show-badge badge-on">Tickets</span>
-</a>
-<a href="https://omgitswicks.com" target="_blank" class="show-item">
-  <div><div class="show-day">10</div><div class="show-month">Jul</div></div>
-  <div><div class="show-venue">Comedy Key West</div><div class="show-meta">Key West, FL &mdash; 7:00 &amp; 9:15 PM</div></div>
-  <span class="show-badge badge-on">Tickets</span>
-</a>
-<a href="https://omgitswicks.com" target="_blank" class="show-item">
-  <div><div class="show-day">29</div><div class="show-month">Aug</div></div>
-  <div><div class="show-venue">Polk Theatre</div><div class="show-meta">Lakeland, FL &mdash; 7:00 PM</div></div>
-  <span class="show-badge badge-on">Tickets</span>
-</a>
-<a href="https://omgitswicks.com" target="_blank" class="show-item">
-  <div><div class="show-day">9</div><div class="show-month">Oct</div></div>
-  <div><div class="show-venue">Gregory's Comedy Club</div><div class="show-meta">Cocoa Beach, FL &mdash; Multiple shows</div></div>
-  <span class="show-badge badge-on">Tickets</span>
-</a>
-```
-
-  </div>
-</div>
-
-<div class="container" id="contact">
-  <div class="section">
-    <div class="section-label">Contact</div>
-    <h2 class="section-title">Get in touch</h2>
-    <p style="font-size:0.95rem;font-weight:300;color:var(--mid);line-height:1.6;">Booking, media, merch, or a question&mdash;tap an option and we'll connect you directly.</p>
-    <div class="contact-grid">
-      <div class="contact-card" onclick="openModal()">
-        <div class="contact-card-title">Book Wicks</div>
-        <div class="contact-card-desc">Theaters, clubs, corporate, private shows</div>
+  <div class="s-hero">
+    <div class="s-hero-main">
+      <div class="s-overline">Fort Myers, Florida &mdash; Comedian</div>
+      <h1 class="s-name">OMG<span class="s-red-italic s-red">Its</span>Wicks</h1>
+    </div>
+    <img
+      class="s-photo"
+      src="https://omgitswicks.com/images/900/23073324/image11-p5IaHceuAGTPZI_tBIZ8Mw.jpeg"
+      alt="OMGItsWicks"
+      style="filter:brightness(0.85);"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+    >
+    <div class="s-photo-placeholder" style="display:none;background:rgba(192,50,28,0.08);color:#F0EBE3;">Photo loads on live site</div>
+    <div class="s-sub s-sub-rule">
+      <div>
+        <div class="s-sub-label">Known for</div>
+        <div class="s-sub-value">Florida observations. Clean comedy. Free meet &amp; greet every show.</div>
       </div>
-      <a href="https://omgitswicks.com" target="_blank" class="contact-card">
-        <div class="contact-card-title">Get merch</div>
-        <div class="contact-card-desc">Official store at omgitswicks.com</div>
-      </a>
-      <div class="contact-card" onclick="openModal()">
-        <div class="contact-card-title">Media inquiry</div>
-        <div class="contact-card-desc">Press, interviews, features</div>
+      <div>
+        <div class="s-sub-label">Next show</div>
+        <div class="s-sub-value">Apr 23 &mdash; McCurdy's, Sarasota</div>
       </div>
-      <div class="contact-card" onclick="openModal()">
-        <div class="contact-card-title">Ask a question</div>
-        <div class="contact-card-desc">Anything else&mdash;just reach out</div>
+    </div>
+    <div class="s-ticker">
+      <div class="s-ticker-track">
+        <span class="s-ticker-item">OMGItsWicks</span><span class="s-ticker-sep">&nbsp;/&nbsp;</span>
+        <span class="s-ticker-item">Family-friendly comedy</span><span class="s-ticker-sep">&nbsp;/&nbsp;</span>
+        <span class="s-ticker-item">Fort Myers, FL</span><span class="s-ticker-sep">&nbsp;/&nbsp;</span>
+        <span class="s-ticker-item">1.7M on TikTok</span><span class="s-ticker-sep">&nbsp;/&nbsp;</span>
+        <span class="s-ticker-item">Free meet &amp; greet every night</span><span class="s-ticker-sep">&nbsp;/&nbsp;</span>
+        <span class="s-ticker-item">Book Wicks</span><span class="s-ticker-sep">&nbsp;/&nbsp;</span>
+        <span class="s-ticker-item">OMGItsWicks</span><span class="s-ticker-sep">&nbsp;/&nbsp;</span>
+        <span class="s-ticker-item">Family-friendly comedy</span><span class="s-ticker-sep">&nbsp;/&nbsp;</span>
+        <span class="s-ticker-item">Fort Myers, FL</span><span class="s-ticker-sep">&nbsp;/&nbsp;</span>
+        <span class="s-ticker-item">1.7M on TikTok</span><span class="s-ticker-sep">&nbsp;/&nbsp;</span>
+        <span class="s-ticker-item">Free meet &amp; greet every night</span><span class="s-ticker-sep">&nbsp;/&nbsp;</span>
+        <span class="s-ticker-item">Book Wicks</span><span class="s-ticker-sep">&nbsp;/&nbsp;</span>
       </div>
     </div>
   </div>
+
+  <div class="s-social-row">
+    <a href="https://tiktok.com/@omgitswicks" target="_blank" class="s-social-link"><span class="s-social-count">1.7M</span>TikTok</a>
+    <a href="https://instagram.com/omgitswicks" target="_blank" class="s-social-link"><span class="s-social-count">553K</span>Instagram</a>
+    <a href="https://youtube.com/@omgitswicks" target="_blank" class="s-social-link"><span class="s-social-count">YouTube</span>@omgitswicks</a>
+    <a href="https://facebook.com/omgitswicks" target="_blank" class="s-social-link"><span class="s-social-count">685K</span>Facebook</a>
+  </div>
+
+  <div class="s-container">
+    <div class="s-section">
+      <div class="s-section-label">About</div>
+      <div class="s-about">
+        <p>Josh Robinson&mdash;better known as OMGItsWicks&mdash;is a Fort Myers comedian who built one of Florida's largest social media followings by doing one thing well: telling the truth about what it's actually like to live here.</p>
+        <div class="s-pull">
+          <p>"Is it wet? Then it has gators."</p>
+          <div class="s-pull-attr">&mdash; on the Florida pond question</div>
+        </div>
+        <p>His shows are <strong>family-friendly</strong>. No shock value, no cheap shots. Every show ends with a free meet and greet&mdash;no upcharge, no velvet rope.</p>
+      </div>
+    </div>
+
+```
+<div class="s-section">
+  <div class="s-section-label">Upcoming shows</div>
+  <h2 class="s-section-title">On the road</h2>
+  <a href="https://www.etix.com/ticket/p/88075635/" target="_blank" class="s-show s-show-rule"><div><div class="s-show-day">23</div><div class="s-show-month">Apr</div></div><div><div class="s-show-venue">McCurdy's Comedy Club</div><div class="s-show-meta">Sarasota, FL &mdash; 7:00 PM</div></div><span class="s-badge s-badge-on">Tickets</span></a>
+  <a href="https://www.etix.com/ticket/p/53545233" target="_blank" class="s-show s-show-rule"><div><div class="s-show-day">24</div><div class="s-show-month">Apr</div></div><div><div class="s-show-venue">McCurdy's Comedy Club</div><div class="s-show-meta">Sarasota, FL &mdash; 6:30 &amp; 8:50 PM</div></div><span class="s-badge s-badge-sold">Sold out</span></a>
+  <a href="https://www.etix.com/ticket/p/31167106" target="_blank" class="s-show s-show-rule"><div><div class="s-show-day">25</div><div class="s-show-month">Apr</div></div><div><div class="s-show-venue">McCurdy's Comedy Club</div><div class="s-show-meta">Sarasota, FL &mdash; 6:30 &amp; 8:50 PM</div></div><span class="s-badge s-badge-sold">Sold out</span></a>
+  <a href="https://www.ticketmaster.com/omgitswicks-boca-raton-florida-05-02-2026/event/0D00635CF967744F" target="_blank" class="s-show s-show-rule"><div><div class="s-show-day">2</div><div class="s-show-month">May</div></div><div><div class="s-show-venue">The Studio at Mizner Park</div><div class="s-show-meta">Boca Raton, FL &mdash; 6:00 &amp; 8:30 PM</div></div><span class="s-badge s-badge-on">Tickets</span></a>
+  <a href="https://visanientertainmentinc.thundertix.com/events/259330" target="_blank" class="s-show s-show-rule"><div><div class="s-show-day">28</div><div class="s-show-month">May</div></div><div><div class="s-show-venue">Visani Comedy Theatre</div><div class="s-show-meta">Port Charlotte, FL &mdash; Multiple shows</div></div><span class="s-badge s-badge-sold">Sold out</span></a>
+  <a href="https://0sculturalparktheatreorg.thundertix.com/events/256085" target="_blank" class="s-show s-show-rule"><div><div class="s-show-day">12</div><div class="s-show-month">Jun</div></div><div><div class="s-show-venue">Cultural Park Theatre</div><div class="s-show-meta">Cape Coral, FL &mdash; 6:00 &amp; 8:30 PM</div></div><span class="s-badge s-badge-on">Tickets</span></a>
+  <a href="https://punchup.live/show/0c9d8741-e05d-4824-a54c-9ffd5b4fa22b" target="_blank" class="s-show s-show-rule"><div><div class="s-show-day">10</div><div class="s-show-month">Jul</div></div><div><div class="s-show-venue">Comedy Key West</div><div class="s-show-meta">Key West, FL &mdash; 7:00 &amp; 9:15 PM</div></div><span class="s-badge s-badge-on">Tickets</span></a>
+  <a href="https://secure.sellingticket.com/design22/clients/index.aspx?designID=38435&OrganizationID=64" target="_blank" class="s-show s-show-rule"><div><div class="s-show-day">29</div><div class="s-show-month">Aug</div></div><div><div class="s-show-venue">Polk Theatre</div><div class="s-show-meta">Lakeland, FL &mdash; 7:00 PM</div></div><span class="s-badge s-badge-on">Tickets</span></a>
+  <a href="https://visanientertainmentinc.thundertix.com/performances/3235825/section/58540" target="_blank" class="s-show s-show-rule"><div><div class="s-show-day">11</div><div class="s-show-month">Sep</div></div><div><div class="s-show-venue">Visani Comedy Theatre</div><div class="s-show-meta">Port Charlotte, FL &mdash; 6:30 &amp; 9:30 PM</div></div><span class="s-badge s-badge-on">Tickets</span></a>
+  <a href="https://www.offthehookcomedy.com/shows/357429" target="_blank" class="s-show s-show-rule"><div><div class="s-show-day">5</div><div class="s-show-month">Nov</div></div><div><div class="s-show-venue">Off the Hook Comedy Club</div><div class="s-show-meta">Naples, FL &mdash; Multiple shows</div></div><span class="s-badge s-badge-on">Tickets</span></a>
 </div>
 
-<footer>
-  <div class="footer-name">OMG<span class="accent">Its</span>Wicks &mdash; Fort Myers, FL</div>
-  <div class="footer-note">All shows family-friendly. Free meet &amp; greet every night.</div>
-</footer>
-
-<div class="modal-bg" id="modal" onclick="handleBgClick(event)">
-  <div class="modal-sheet" id="modalSheet">
-    <div class="modal-title">Get in touch</div>
-    <div class="modal-sub">Choose how you want to connect.</div>
-    <div class="modal-options">
-      <a href="sms:17273539673?body=Hi%20Wicks%20team%2C%20I%27d%20like%20to%20inquire%20about%20booking." class="modal-option">
-        <div><div class="modal-opt-label">Book a show</div><div class="modal-opt-detail">Text the team directly</div></div>
-        <span class="modal-arrow">&rarr;</span>
-      </a>
-      <a href="https://omgitswicks.com" target="_blank" class="modal-option">
-        <div><div class="modal-opt-label">Get merch</div><div class="modal-opt-detail">Shop the official store</div></div>
-        <span class="modal-arrow">&rarr;</span>
-      </a>
-      <a href="sms:17273539673?body=Hi%2C%20media%20inquiry%20for%20OMGItsWicks." class="modal-option">
-        <div><div class="modal-opt-label">Media inquiry</div><div class="modal-opt-detail">Press, interviews, features</div></div>
-        <span class="modal-arrow">&rarr;</span>
-      </a>
-      <a href="sms:17273539673?body=Hey%20Wicks%20team%2C%20I%20have%20a%20question." class="modal-option">
-        <div><div class="modal-opt-label">Ask a question</div><div class="modal-opt-detail">Text us directly</div></div>
-        <span class="modal-arrow">&rarr;</span>
-      </a>
-      <a href="tel:17273539673" class="modal-option">
-        <div><div class="modal-opt-label">Call us</div><div class="modal-opt-detail">(727) 353-9673</div></div>
-        <span class="modal-arrow">&rarr;</span>
-      </a>
-    </div>
-    <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+<div class="s-section">
+  <div class="s-section-label">Contact</div>
+  <h2 class="s-section-title">Get in touch</h2>
+  <div class="s-grid">
+    <div class="s-card" onclick="openModal('dark')" style="border-top-color:#C0321C;"><div class="s-card-title" style="color:#C0321C;">Book Wicks</div><div class="s-card-desc">Theaters, clubs, corporate, private shows</div></div>
+    <a href="https://omgitswicks.com" target="_blank" class="s-card" style="border-top-color:#0E7C6B;"><div class="s-card-title" style="color:#0E7C6B;">Get merch</div><div class="s-card-desc">Official store</div></a>
+    <div class="s-card" onclick="openModal('dark')" style="border-top-color:#0E7C6B;"><div class="s-card-title">Media inquiry</div><div class="s-card-desc">Press, interviews, features</div></div>
+    <div class="s-card" onclick="openModal('dark')" style="border-top-color:#333;"><div class="s-card-title">Ask a question</div><div class="s-card-desc">Just reach out</div></div>
   </div>
 </div>
+```
+
+  </div>
+
+  <footer class="s-footer">
+    <div class="s-footer-name">OMG<span style="color:#0E7C6B;">Its</span>Wicks &mdash; Fort Myers, FL</div>
+    <div class="s-footer-note">Free meet &amp; greet every night.</div>
+  </footer>
+
+  <!-- MODAL DARK -->
+
+  <div class="s-modal-bg" id="modalDark" onclick="if(event.target===this)closeModal('dark')">
+    <div class="s-modal-sheet dark">
+      <div class="s-modal-title">Get in touch</div>
+      <div class="s-modal-sub">Choose how you want to connect.</div>
+      <div class="s-modal-opts dark">
+        <a href="sms:17273539673?body=Hi%20Wicks%20team%2C%20booking%20inquiry." class="s-modal-opt dark" style="border-left-color:#C0321C;"><div><div class="s-modal-opt-label">Book a show</div><div class="s-modal-opt-detail">Text the team</div></div><span>&rarr;</span></a>
+        <a href="https://omgitswicks.com" target="_blank" class="s-modal-opt dark" style="border-left-color:#0E7C6B;"><div><div class="s-modal-opt-label">Get merch</div><div class="s-modal-opt-detail">Official store</div></div><span>&rarr;</span></a>
+        <a href="sms:17273539673?body=Media%20inquiry%20for%20OMGItsWicks." class="s-modal-opt dark" style="border-left-color:#0E7C6B;"><div><div class="s-modal-opt-label">Media inquiry</div><div class="s-modal-opt-detail">Press &amp; interviews</div></div><span>&rarr;</span></a>
+        <a href="sms:17273539673?body=Hi%2C%20I%20have%20a%20question." class="s-modal-opt dark" style="border-left-color:#0E7C6B;"><div><div class="s-modal-opt-label">Ask a question</div><div class="s-modal-opt-detail">Text directly</div></div><span>&rarr;</span></a>
+        <a href="tel:17273539673" class="s-modal-opt dark" style="border-left-color:#444;"><div><div class="s-modal-opt-label">Call us</div><div class="s-modal-opt-detail">(727) 353-9673</div></div><span>&rarr;</span></a>
+      </div>
+      <button class="s-modal-cancel dark" onclick="closeModal('dark')">Cancel</button>
+    </div>
+  </div>
+</div><!-- end dark -->
+
+</div><!-- end frames -->
 
 <script>
-  function openModal() {
-    document.getElementById('modal').classList.add('open');
-    document.body.style.overflow = 'hidden';
+function showFrame(which) {
+  var light = document.getElementById('frameLight');
+  var dark  = document.getElementById('frameDark');
+  var btnL  = document.getElementById('btnLight');
+  var btnD  = document.getElementById('btnDark');
+  var btnB  = document.getElementById('btnBoth');
+
+  btnL.className = 'pick-btn'; btnD.className = 'pick-btn'; btnB.className = 'pick-btn';
+
+  if (which === 'light') {
+    light.style.display = 'block'; dark.style.display = 'none';
+    light.classList.add('visible'); dark.classList.remove('visible');
+    btnL.className = 'pick-btn active-light';
+  } else if (which === 'dark') {
+    light.style.display = 'none'; dark.style.display = 'block';
+    dark.classList.add('visible'); light.classList.remove('visible');
+    btnD.className = 'pick-btn active-dark';
+  } else {
+    light.style.display = 'block'; dark.style.display = 'block';
+    light.classList.add('visible'); dark.classList.add('visible');
+    btnB.className = 'pick-btn active-light';
   }
-  function closeModal() {
-    document.getElementById('modal').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  function handleBgClick(e) {
-    if (e.target === document.getElementById('modal')) closeModal();
-  }
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
-    });
-  });
+}
+
+function openModal(theme) {
+  document.getElementById('modal' + (theme === 'dark' ? 'Dark' : 'Light')).classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(theme) {
+  document.getElementById('modal' + (theme === 'dark' ? 'Dark' : 'Light')).classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// default: show both on desktop, light on mobile
+if (window.innerWidth > 700) { showFrame('both'); } else { showFrame('light'); }
 </script>
 
 </body>
